@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "prod": "finding-dollar",
+    "default": "finding-dollar-dev",
+    "dev": "finding-dollar-dev"
+  }
+}
