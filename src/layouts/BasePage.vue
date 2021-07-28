@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="ma-0 pa-0">
     <NavigationBar />
-    <TopLeft />
+    <slot />
   </v-container>
 </template>
 
@@ -9,13 +9,11 @@
 import { defineComponent } from '@vue/composition-api';
 
 import NavigationBar from '@/components/NavigationBar.vue';
-import TopLeft from '@/layouts/TopLeft.vue';
 
 export default defineComponent({
   name: 'BasePage',
   components: {
     NavigationBar,
-    TopLeft,
   },
 });
 </script>

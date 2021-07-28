@@ -1,9 +1,7 @@
 <template>
-  <v-container fluid class="ma-0 pa-0" id="top-left">
+  <v-container fluid class="ma-0 pa-0" id="top-right">
     <DollarFolded class="first-dollar" />
     <CoinDouble class="first-coin" />
-    <CoinDouble class="second-coin" />
-    <Coin class="third-coin" />
   </v-container>
 </template>
 
@@ -12,15 +10,13 @@ import { defineComponent } from '@vue/composition-api';
 
 import NavigationBar from '@/components/NavigationBar.vue';
 import DollarFolded from '@/components/Money/DollarFolded.vue';
-import Coin from '@/components/Money/Coin.vue';
 import CoinDouble from '@/components/Money/CoinDouble.vue';
 
 export default defineComponent({
-  name: 'TopLeft',
+  name: 'TopRight',
   components: {
     NavigationBar,
     DollarFolded,
-    Coin,
     CoinDouble,
   },
 });
@@ -29,24 +25,12 @@ export default defineComponent({
 <style scoped>
 .first-dollar {
   position: absolute;
-  transform: rotate(30deg);
-  top: -25%;
+  transform: rotate(-60deg);
+  top: -30%;
+  right: -10%;
 }
 .first-coin {
   position: absolute;
-  left: 10%;
-  top: 10%;
-  transform: scale(0.5);
-}
-.second-coin {
-  position: absolute;
-  left: -5%;
-  top: -5%;
-}
-.third-coin {
-  position: absolute;
-  transform: scale(0.25);
-  top: 5%;
-  left: -7%;
+  right: 10%;
 }
 </style>

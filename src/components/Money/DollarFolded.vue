@@ -43,3 +43,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+img {
+  display: block;
+}
+</style>
