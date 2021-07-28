@@ -1,1 +1,1 @@
-declare module 'minify-css-string'
+declare module 'minify-css-string';
