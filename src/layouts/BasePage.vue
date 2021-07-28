@@ -1,18 +1,21 @@
 <template>
   <v-container fluid>
-    <BasePage />
+    <NavigationBar />
+    <TopLeft />
   </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
-import BasePage from '@/layouts/BasePage.vue';
+import NavigationBar from '@/components/NavigationBar.vue';
+import TopLeft from '@/layouts/TopLeft.vue';
 
 export default defineComponent({
-  name: 'Home',
+  name: 'BasePage',
   components: {
-    BasePage,
+    NavigationBar,
+    TopLeft,
   },
 });
 </script>

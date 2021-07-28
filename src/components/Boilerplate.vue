@@ -1,15 +1,11 @@
 <template>
-  <v-app>
-    <v-main class="primary fill-width">
-      <router-view />
-    </v-main>
-  </v-app>
+  <v-img contain width="500" src="@/assets/money-dollar.svg" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
-  name: 'App',
+  name: 'MoneyDollar',
 });
 </script>
