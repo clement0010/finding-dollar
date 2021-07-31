@@ -1,39 +1,39 @@
 <template>
-  <v-img contain :width="width" :height="height" src="@/assets/money-dollar-1.svg" />
+  <v-img contain :width="width" :height="height" src="@/assets/graph.svg" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
-  name: 'MoneyDollarFolded',
+  name: 'Graph',
   setup(_, { root }) {
     const width = computed(() => {
       switch (root.$vuetify.breakpoint.name) {
         case 'xs':
-          return 200;
+          return 300;
         case 'sm':
           return 300;
         case 'md':
-          return 400;
+          return 500;
         case 'lg':
-          return 450;
+          return 500;
         case 'xl':
-          return 450;
+          return 500;
       }
     });
     const height = computed(() => {
       switch (root.$vuetify.breakpoint.name) {
         case 'xs':
-          return 200;
+          return 300;
         case 'sm':
           return 300;
         case 'md':
-          return 400;
+          return 500;
         case 'lg':
-          return 450;
+          return 500;
         case 'xl':
-          return 450;
+          return 500;
       }
     });
     return {

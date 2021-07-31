@@ -1,12 +1,12 @@
 <template>
-  <v-img contain :width="width" :height="height" src="@/assets/money-dollar-1.svg" />
+  <v-img contain :width="width" :height="height" src="@/assets/money-dollar-3.svg" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
-  name: 'MoneyDollarFolded',
+  name: 'MoneyDollarHalf',
   setup(_, { root }) {
     const width = computed(() => {
       switch (root.$vuetify.breakpoint.name) {
@@ -15,7 +15,7 @@ export default defineComponent({
         case 'sm':
           return 300;
         case 'md':
-          return 400;
+          return 300;
         case 'lg':
           return 450;
         case 'xl':
@@ -29,7 +29,7 @@ export default defineComponent({
         case 'sm':
           return 300;
         case 'md':
-          return 400;
+          return 300;
         case 'lg':
           return 450;
         case 'xl':
