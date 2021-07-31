@@ -1,0 +1,30 @@
+# Directories to exclude
+dist
+assets
+node_modules
+.husky/**
+
+# File extensions to exclude
+*.sh
+*.log
+*.txt
+*.xml
+*.conf
+.env
+
+# Files to exclude
+package-lock.json
+.vscode
+.gitignore
+.editorconfig
+.prettierignore
+.eslintignore
+.browserslistrc
+.firebaserc
+tests/**/**
+public
+src/common/type.ts
+functions
+firestore.rules
+.firebaserc
+firestore.indexes.json

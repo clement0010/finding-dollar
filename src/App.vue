@@ -1,52 +1,36 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <NavigationBar v-if="$vuetify.breakpoint.mdAndUp" />
+    <NavigationBarMobile v-else />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view />
+    <v-main class="primary">
+      <v-container fluid fill-height class="ma-0 pa-0">
+        <router-view />
+      </v-container>
     </v-main>
+    <Footer v-if="!$vuetify.breakpoint.mdAndUp" />
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from '@vue/composition-api';
 
-export default Vue.extend({
-  name: "App",
+import NavigationBar from '@/components/Navigation/NavigationBar.vue';
+import NavigationBarMobile from '@/components/Navigation/NavigationBarMobile.vue';
+import Footer from '@/components/Footer.vue';
 
-  data: () => ({
-    //
-  }),
+export default defineComponent({
+  name: 'App',
+  components: {
+    NavigationBar,
+    NavigationBarMobile,
+    Footer,
+  },
 });
 </script>
+
+<style>
+a {
+  text-decoration: none;
+}
+</style>
