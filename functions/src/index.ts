@@ -1,9 +1,15 @@
-import * as functions from "firebase-functions";
+import { functions, log, populateTeamDatabase, teams } from './common';
+import { sendSlackMessage } from './slack';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export const populateTeams = functions.https.onRequest(async (request, response) => {
+  try {
+    log('info', 'Incoming populate team database request', { structuredData: true });
+
+    await populateTeamDatabase(teams);
+    response.send('Completed populate team database');
+  } catch (error) {
+    log('error', 'Error message', { error });
+    await sendSlackMessage('testing');
+    response.status(500).send('Failed to populate team database');
+  }
+});

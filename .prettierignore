@@ -24,7 +24,7 @@ package-lock.json
 tests/**/**
 public
 src/common/type.ts
-functions
 firestore.rules
 .firebaserc
 firestore.indexes.json
+functions/lib
