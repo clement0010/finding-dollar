@@ -1,23 +1,18 @@
 <template>
-  <v-container fluid class="ma-0 pa-0" id="top-right">
-    <DollarFolded class="first-dollar" />
-    <CoinDouble class="first-coin" />
+  <v-container fluid class="ma-0 pa-0">
+    <DollarHalf class="first-dollar" />
   </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
-import NavigationBar from '@/components/NavigationBar.vue';
-import DollarFolded from '@/components/Money/DollarFolded.vue';
-import CoinDouble from '@/components/Money/CoinDouble.vue';
+import DollarHalf from '@/components/Money/DollarHalf.vue';
 
 export default defineComponent({
   name: 'TopRight',
   components: {
-    NavigationBar,
-    DollarFolded,
-    CoinDouble,
+    DollarHalf,
   },
 });
 </script>
@@ -25,12 +20,8 @@ export default defineComponent({
 <style scoped>
 .first-dollar {
   position: absolute;
-  transform: rotate(-60deg);
-  top: -30%;
-  right: -10%;
-}
-.first-coin {
-  position: absolute;
-  right: 10%;
+  transform: rotate(0deg);
+  top: -5rem;
+  right: -5rem;
 }
 </style>
