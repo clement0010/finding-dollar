@@ -36,6 +36,11 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
   },
   {
+    path: '/challenge',
+    name: 'Challenge',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Challenge.vue'),
+  },
+  {
     path: '*',
     name: 'Error',
     component: () => import(/* webpackChunkName: "error" */ '../views/Error.vue'),

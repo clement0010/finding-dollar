@@ -12,7 +12,7 @@
         <Snackbar />
       </v-container>
     </v-main>
-    <Footer v-if="!$vuetify.breakpoint.lgAndUp" />
+    <Footer v-if="!$vuetify.breakpoint.mdAndUp" />
   </v-app>
 </template>
 
@@ -38,8 +38,16 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+html {
+  overflow-y: auto;
+}
+
 a {
   text-decoration: none;
+}
+strong {
+  font-weight: 900;
+  color: black;
 }
 </style>

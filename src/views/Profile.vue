@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="ma-0 pa-0">
+  <v-container fluid class="ma-0 pa-0" style="position: absolute; top: 15vh">
     <v-row no-gutters justify="center">
       <v-col cols="8">
         <v-switch color="secondary" label="Temporary Toggle" v-model="selectedRole" />
@@ -19,7 +19,7 @@
 import { defineComponent, ref } from '@vue/composition-api';
 
 import RoleCard from '@/components/DisplayCards/RoleCard.vue';
-import RoleDescription from '@/components/RoleSelection/RoleDescription.vue';
+import RoleDescription from '@/components/DisplayCards/RoleDescriptionCard.vue';
 
 export default defineComponent({
   name: 'Profile',

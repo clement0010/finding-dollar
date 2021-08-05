@@ -20,6 +20,11 @@
         </router-link>
       </v-col>
       <v-col cols="auto">
+        <router-link to="/challenge">
+          <v-btn text rounded class="secondary--text"> Challenge </v-btn>
+        </router-link>
+      </v-col>
+      <v-col cols="auto">
         <router-link to="/leaderboard">
           <v-btn text rounded class="secondary--text"> Leaderboard </v-btn>
         </router-link>

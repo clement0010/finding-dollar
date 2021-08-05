@@ -41,7 +41,7 @@
             <router-link v-if="authenticated" :to="{ name: 'Profile', params: { id: id } }">
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="secondary">mdi-account</v-icon>
+                  <v-icon color="secondary">mdi-account-outline</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content> Profile </v-list-item-content>
               </v-list-item>
@@ -50,9 +50,18 @@
             <router-link to="/agenda">
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="secondary">mdi-shopping</v-icon>
+                  <v-icon color="secondary">mdi-shopping-outline</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content> Agenda </v-list-item-content>
+              </v-list-item>
+            </router-link>
+
+            <router-link to="/challenge">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="secondary">mdi-newspaper-variant-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content> Challenge </v-list-item-content>
               </v-list-item>
             </router-link>
 
