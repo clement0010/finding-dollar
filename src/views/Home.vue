@@ -1,32 +1,26 @@
 <template>
-  <BasePage>
-    <v-card flat color="transparent">
-      <v-card-title
-        class="text-center secondary--text font-weight-bold justify-center"
-        :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-3']"
-      >
-        ICM$ SG:
-        <br />
-        Finding Dollar
-      </v-card-title>
-      <v-card-actions class="justify-center">
-        <v-btn class="rounded-lg secondary" elevation="5">14 AUG 2021</v-btn>
-        <v-btn class="rounded-lg secondary" elevation="5">9 AM - 3 PM (SGT)</v-btn>
-      </v-card-actions>
-    </v-card>
-  </BasePage>
+  <v-card flat color="transparent">
+    <v-card-title
+      class="text-center secondary--text font-weight-bold justify-center"
+      :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-3']"
+    >
+      ICM$ SG:
+      <br />
+      Finding Dollar
+    </v-card-title>
+    <v-card-actions class="justify-center">
+      <v-btn class="rounded-lg secondary" elevation="5">14 AUG 2021</v-btn>
+      <v-btn class="rounded-lg secondary" elevation="5">9 AM - 3 PM (SGT)</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api';
 
-import BasePage from '@/layouts/BasePage.vue';
-
 export default defineComponent({
   name: 'Home',
-  components: {
-    BasePage,
-  },
+  components: {},
   setup(_, { root }) {
     const test = computed(() => {
       switch (root.$vuetify.breakpoint.name) {

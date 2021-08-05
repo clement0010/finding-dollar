@@ -17,6 +17,7 @@ const opts = {
         accent2: '#C7C7E4',
         accent3: '#979797',
         white: '#FFFFFF',
+        grey: '#7575A9',
         black: '#000000',
         success: '#07BF9B',
         warning: '#FBC046',

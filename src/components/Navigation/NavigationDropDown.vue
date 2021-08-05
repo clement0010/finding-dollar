@@ -27,17 +27,9 @@
     </v-app-bar>
 
     <v-card color="primary">
-      <v-list v-if="!authenticated" nav color="primary">
-        <v-list-item class="justify-center">
-          <router-link :to="{ name: 'Login' }">
-            <v-btn class="text-lowercase font-weight-regular" rounded text> Login </v-btn>
-          </router-link>
-        </v-list-item>
-      </v-list>
       <div>
-        <v-divider />
         <v-list nav color="primary">
-          <v-list-item>
+          <v-list-item v-if="authenticated" class="mt-15">
             <v-list-item-content>
               <v-list-item-title>
                 <strong> Hello Team 3 </strong>
@@ -45,8 +37,8 @@
               <v-list-item-subtitle> You are role ? </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item-group :value="selected">
-            <router-link :to="{ name: 'Profile', params: { id: 10 } }">
+          <v-list-item-group v-if="authenticated" :value="selected">
+            <router-link v-if="authenticated" :to="{ name: 'Profile', params: { id: id } }">
               <v-list-item>
                 <v-list-item-icon>
                   <v-icon color="secondary">mdi-account</v-icon>
@@ -81,18 +73,55 @@
                 <v-list-item-content> Team </v-list-item-content>
               </v-list-item>
             </router-link>
-
-            <v-divider />
-
-            <v-list color="primary">
+          </v-list-item-group>
+          <v-list-item-group v-if="!authenticated" :value="selected">
+            <router-link to="/agenda">
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="secondary">mdi-exit-to-app</v-icon>
+                  <v-icon color="secondary">mdi-shopping</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content> Sign Out </v-list-item-content>
+                <v-list-item-content> Agenda </v-list-item-content>
               </v-list-item>
-            </v-list>
+            </router-link>
+
+            <router-link to="/leaderboard">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="secondary">mdi-trophy-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content> Leaderboard </v-list-item-content>
+              </v-list-item>
+            </router-link>
+
+            <router-link to="/team">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="secondary">mdi-account-supervisor-circle-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content> Team </v-list-item-content>
+              </v-list-item>
+            </router-link>
           </v-list-item-group>
+        </v-list>
+        <v-divider />
+
+        <v-list color="primary">
+          <router-link to="/login" v-if="authenticated">
+            <v-list-item @click="signout">
+              <v-list-item-icon>
+                <v-icon color="secondary">mdi-exit-to-app</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content> Sign Out </v-list-item-content>
+            </v-list-item>
+          </router-link>
+          <router-link to="/login" v-if="!authenticated">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="secondary">mdi-login</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content> Login </v-list-item-content>
+            </v-list-item>
+          </router-link>
         </v-list>
       </div>
     </v-card>
@@ -100,7 +129,9 @@
 </template>
 
 <script lang="ts">
-import { authenticated } from '@/composable/store';
+import useAuth from '@/composable/authComposition';
+
+import { authenticated, uid } from '@/composable/store';
 import { computed, defineComponent, ref, watch } from '@vue/composition-api';
 
 export default defineComponent({
@@ -109,6 +140,7 @@ export default defineComponent({
   setup(_, { root }) {
     const dialog = ref(false);
     const routeName = computed(() => root.$route.name);
+    const { signout } = useAuth();
 
     watch(routeName, () => {
       dialog.value = false;
@@ -119,13 +151,11 @@ export default defineComponent({
         case 'Profile':
           return 0;
         case 'Agenda':
-          return 1;
+          return authenticated.value ? 1 : 0;
         case 'Leaderboard':
-          return 2;
+          return authenticated.value ? 2 : 1;
         case 'Team':
-          return 3;
-        case 'Settings':
-          return 4;
+          return authenticated.value ? 3 : 2;
         default:
           return undefined;
       }
@@ -138,8 +168,12 @@ export default defineComponent({
     return {
       dialog,
       authenticated,
+      id: computed(() => uid.value),
+
       toggleDialog,
       selected,
+
+      signout,
     };
   },
 });

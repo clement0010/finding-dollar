@@ -5,10 +5,14 @@
 
     <v-main class="primary">
       <v-container fluid fill-height class="ma-0 pa-0">
-        <router-view />
+        <BasePage>
+          <router-view />
+        </BasePage>
+
+        <Snackbar />
       </v-container>
     </v-main>
-    <Footer v-if="!$vuetify.breakpoint.mdAndUp" />
+    <Footer v-if="!$vuetify.breakpoint.lgAndUp" />
   </v-app>
 </template>
 
@@ -18,6 +22,9 @@ import { defineComponent } from '@vue/composition-api';
 import NavigationBar from '@/components/Navigation/NavigationBar.vue';
 import NavigationBarMobile from '@/components/Navigation/NavigationBarMobile.vue';
 import Footer from '@/components/Footer.vue';
+import Snackbar from '@/components/Snackbar.vue';
+
+import BasePage from '@/layouts/BasePage.vue';
 
 export default defineComponent({
   name: 'App',
@@ -25,6 +32,8 @@ export default defineComponent({
     NavigationBar,
     NavigationBarMobile,
     Footer,
+    BasePage,
+    Snackbar,
   },
 });
 </script>
