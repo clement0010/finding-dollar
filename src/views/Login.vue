@@ -1,20 +1,20 @@
 <template>
-  <BasePage>
-    <v-container fluid class="ma-0 pa-0 justify-center">
-      <v-row no-gutters justify="center"> This is login page </v-row>
-    </v-container>
-  </BasePage>
+  <v-container fluid class="ma-0 pa-0">
+    <v-row no-gutters>
+      <LoginCard justify="center" align="center" />
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
-import BasePage from '@/layouts/BasePage.vue';
+import LoginCard from '@/components/Authentication/LoginCard.vue';
 
 export default defineComponent({
   name: 'Login',
   components: {
-    BasePage,
+    LoginCard,
   },
 });
 </script>

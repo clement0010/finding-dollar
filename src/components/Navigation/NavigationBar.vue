@@ -9,14 +9,19 @@
         </v-app-bar-title>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col cols="auto">
-        <router-link :to="{ name: 'Profile', params: { id: 10 } }">
+      <v-col v-if="authenticated" cols="auto">
+        <router-link :to="{ name: 'Profile', params: { id } }">
           <v-btn text rounded class="secondary--text"> Profile </v-btn>
         </router-link>
       </v-col>
       <v-col cols="auto">
         <router-link to="/agenda">
           <v-btn text rounded class="secondary--text"> Agenda </v-btn>
+        </router-link>
+      </v-col>
+      <v-col cols="auto">
+        <router-link to="/challenge">
+          <v-btn text rounded class="secondary--text"> Challenge </v-btn>
         </router-link>
       </v-col>
       <v-col cols="auto">
@@ -30,9 +35,12 @@
         </router-link>
       </v-col>
       <v-col cols="auto">
-        <router-link to="/login">
+        <router-link to="/login" v-if="!authenticated">
           <v-btn text rounded class="secondary--text"> Login </v-btn>
         </router-link>
+        <v-btn text rounded class="secondary--text" v-if="authenticated" @click="logout">
+          Sign Out
+        </v-btn>
       </v-col>
       <v-col cols="2" v-if="$vuetify.breakpoint.lgAndUp">
         <v-row justify="center" align="center">
@@ -68,9 +76,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { computed, defineComponent } from '@vue/composition-api';
+import { authenticated, uid } from '@/composable/store';
+import useAuth from '@/composable/authComposition';
 
 export default defineComponent({
   name: 'NavigationBar',
+  setup(_, { root }) {
+    const { signout } = useAuth();
+    const logout = async () => {
+      await signout();
+      root.$router.push('/');
+    };
+    return {
+      authenticated,
+      id: computed(() => uid.value),
+
+      logout,
+    };
+  },
 });
 </script>
