@@ -38,7 +38,7 @@
         <router-link to="/login" v-if="!authenticated">
           <v-btn text rounded class="secondary--text"> Login </v-btn>
         </router-link>
-        <v-btn text rounded class="secondary--text" v-if="authenticated" @click="signout">
+        <v-btn text rounded class="secondary--text" v-if="authenticated" @click="logout">
           Sign Out
         </v-btn>
       </v-col>
@@ -82,14 +82,17 @@ import useAuth from '@/composable/authComposition';
 
 export default defineComponent({
   name: 'NavigationBar',
-  setup() {
+  setup(_, { root }) {
     const { signout } = useAuth();
-
+    const logout = async () => {
+      await signout();
+      root.$router.push('/');
+    };
     return {
       authenticated,
       id: computed(() => uid.value),
 
-      signout,
+      logout,
     };
   },
 });

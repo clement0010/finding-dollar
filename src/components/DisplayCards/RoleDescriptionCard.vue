@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pa-0 ma-0">
     <v-expansion-panels accordion class="elevation-5 rounded-lg primary">
-      <v-expansion-panel v-for="item in items" :key="item.role">
+      <v-expansion-panel v-for="item in items" :key="item.id">
         <v-expansion-panel-header>
           {{ item.role }}
         </v-expansion-panel-header>
@@ -14,6 +14,11 @@
               <v-img :src="item.photoUrl" contain width="100px" />
             </v-col>
           </v-row>
+          <RoleSelectionButton
+            :id="item.id"
+            :role="item.role"
+            @selectCharacter="(payload) => $emit('selectCharacter', payload)"
+          />
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -23,11 +28,17 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
+import RoleSelectionButton from '@/components/CharacterDetails/RoleSelectionButton.vue';
+
 export default defineComponent({
   name: 'RoleCard',
+  components: {
+    RoleSelectionButton,
+  },
   setup() {
     const items = [
       {
+        id: 'founder',
         role: 'Nigel the Founder',
         content: `Nigel serves as the co-founder and Chief Technology Officer of a FinTech
         startup. The 24-year-old law graduate wishes to have a house of his own by the time he is
@@ -37,6 +48,7 @@ export default defineComponent({
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Startup%20Founder.png?alt=media&token=15137ed8-d6e6-4a73-8cc3-46ea6a671908',
       },
       {
+        id: 'management',
         role: 'Dory the Management Associate',
         content: `Dory recently completed an MBA at Salty Management University (SMU).
         Originally from Malaysia, she now works as a Management Associate at one of Singapore’s
@@ -49,6 +61,7 @@ export default defineComponent({
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Management%20Associate.png?alt=media&token=147a98ff-d61c-410c-97a5-1514677e5bf7',
       },
       {
+        id: 'software',
         role: 'Max the Software Engineer',
         content: `Max is a tech enthusiast who prides himself for always owning the latest
         technology products. Fresh out of university, he joined Ninja Van as a software engineer.
@@ -59,6 +72,7 @@ export default defineComponent({
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Sofrware%20Engineer.png?alt=media&token=05245982-d1fe-4a1d-9342-303804952cfd',
       },
       {
+        id: 'designer',
         role: 'Nemo the Designer',
         content: `Nemo is a freelance graphic designer. He actually graduated with a Mechanical
         Engineering degree last year but decided to stick to his passion in graphic design. He is in

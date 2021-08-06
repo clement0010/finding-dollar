@@ -21,9 +21,17 @@
 import { defineComponent } from '@vue/composition-api';
 
 import { formatThousandSeparator } from '@/common/';
+import { Breakdown } from '@/common/firestore/type';
 
 export default defineComponent({
   name: 'DataTable',
+  props: {
+    data: {
+      type: Array as () => Breakdown[],
+      default: () => [],
+      required: true,
+    },
+  },
   setup() {
     const headers = [
       {
@@ -36,42 +44,9 @@ export default defineComponent({
       { text: 'Category ', value: 'category', align: 'right' },
       { text: 'Value (S$)', value: 'value', align: 'right', groupable: false },
     ];
-    const data = [
-      {
-        name: 'Salary',
-        value: 5500,
-        category: 'Income',
-      },
-      {
-        name: 'Phone Bill',
-        value: 150,
-        category: 'Expense',
-      },
-      {
-        name: 'Food & Beverages',
-        value: 1200,
-        category: 'Expense',
-      },
-      {
-        name: 'Food & Beverages1',
-        value: 1200,
-        category: 'Expense',
-      },
-      {
-        name: 'Food & Beverages2',
-        value: 1200,
-        category: 'Expense',
-      },
-      {
-        name: 'Food & Beverages3',
-        value: 1200,
-        category: 'Expense',
-      },
-    ];
 
     return {
       headers,
-      data,
       formatThousandSeparator,
     };
   },

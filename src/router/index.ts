@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
+import authGuard from './authGuard';
 
 Vue.use(VueRouter);
 
@@ -13,7 +14,9 @@ const routes: Array<RouteConfig> = [
   {
     path: '/profile/:id',
     name: 'Profile',
+    meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue'),
+    beforeEnter: authGuard,
   },
   {
     path: '/agenda',

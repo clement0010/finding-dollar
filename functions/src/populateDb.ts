@@ -1,7 +1,16 @@
 import * as express from 'express';
 import * as cors from 'cors';
 
-import { functions, log, populateTeamDatabase, teams } from './common';
+import {
+  adminUser,
+  characters,
+  functions,
+  log,
+  populateAdminDatabase,
+  populateCharacterDatabase,
+  populateTeamDatabase,
+  teams,
+} from './common';
 import { apiValidation } from './express/middleware';
 
 const app = express();
@@ -14,6 +23,8 @@ app.post('/', async (request, response) => {
     log('info', 'Incoming populate team database request', { structuredData: true });
 
     await populateTeamDatabase(teams);
+    await populateCharacterDatabase(characters);
+    await populateAdminDatabase(adminUser);
     response.send(
       JSON.stringify({
         message: 'Completed populate team database',

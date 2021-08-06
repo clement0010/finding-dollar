@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar :color="status" :value="activate" width="50px" rounded>
+  <v-snackbar :color="status" :value="activate" rounded>
     <v-row justify="center">
       <v-icon left v-if="status === 'error'"> mdi-alert-decagram </v-icon>
       <v-icon left v-if="status === 'success'"> mdi-check-decagram </v-icon>

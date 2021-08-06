@@ -115,14 +115,12 @@
         <v-divider />
 
         <v-list color="primary">
-          <router-link to="/login" v-if="authenticated">
-            <v-list-item @click="signout">
-              <v-list-item-icon>
-                <v-icon color="secondary">mdi-exit-to-app</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content> Sign Out </v-list-item-content>
-            </v-list-item>
-          </router-link>
+          <v-list-item @click="logout" v-if="authenticated">
+            <v-list-item-icon>
+              <v-icon color="secondary">mdi-exit-to-app</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content> Sign Out </v-list-item-content>
+          </v-list-item>
           <router-link to="/login" v-if="!authenticated">
             <v-list-item>
               <v-list-item-icon>
@@ -174,6 +172,11 @@ export default defineComponent({
       dialog.value = !dialog.value;
     };
 
+    const logout = async () => {
+      await signout();
+      root.$router.push('/');
+    };
+
     return {
       dialog,
       authenticated,
@@ -182,7 +185,7 @@ export default defineComponent({
       toggleDialog,
       selected,
 
-      signout,
+      logout,
     };
   },
 });
