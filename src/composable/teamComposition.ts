@@ -1,4 +1,9 @@
-import { getTeamProfileFromDb, updateTeamProfileFromDb } from '@/common/firestore/teamDb';
+import { findQuotaRemaining } from '@/common';
+import {
+  getCharacterQuotaFromDb,
+  getTeamProfileFromDb,
+  updateTeamProfileFromDb,
+} from '@/common/firestore/teamDb';
 import { computed, onBeforeMount, ref } from '@vue/composition-api';
 import useSnackbar from './snackbarComposition';
 import { teamProfile } from './store';
@@ -42,13 +47,33 @@ export default function useTeam(uid: string) {
     }
   };
 
+  const getCharacterQuota = async (): Promise<void> => {
+    try {
+      loading.value = true;
+      await getCharacterQuotaFromDb();
+      error.value = false;
+    } catch (err) {
+      console.error(err);
+      error.value = true;
+    } finally {
+      loading.value = false;
+    }
+  };
+
   onBeforeMount(async () => {
     await fetchTeamProfile();
+    await getCharacterQuota();
   });
 
   return {
     fetchTeamProfile,
     updateTeamProfile,
+    getCharacterQuota,
+
+    designerQuota: computed(() => findQuotaRemaining('designer')),
+    founderQuota: computed(() => findQuotaRemaining('founder')),
+    managementQuota: computed(() => findQuotaRemaining('management')),
+    softwareQuota: computed(() => findQuotaRemaining('software')),
 
     loading: computed(() => loading.value),
     error: computed(() => error.value),

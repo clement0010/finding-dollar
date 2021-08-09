@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import VueCompositionApi, { ref } from '@vue/composition-api';
 
-import { Team } from '@/common/firestore/type';
+import { Quotas, Team } from '@/common/firestore/type';
 
 Vue.use(VueCompositionApi);
 
 // Team
 export const teamProfile = ref<Team>();
+export const quota = ref<Quotas>([]);
 
 // Authentication
 export const authenticated = ref(true);

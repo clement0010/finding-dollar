@@ -17,6 +17,7 @@
           <RoleSelectionButton
             :id="item.id"
             :role="item.role"
+            :disabled="item.quota.value <= 0"
             @selectCharacter="(payload) => $emit('selectCharacter', payload)"
           />
         </v-expansion-panel-content>
@@ -26,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs } from '@vue/composition-api';
 
 import RoleSelectionButton from '@/components/CharacterDetails/RoleSelectionButton.vue';
 
@@ -35,8 +36,27 @@ export default defineComponent({
   components: {
     RoleSelectionButton,
   },
-  setup() {
-    const items = [
+  props: {
+    designerQuota: {
+      type: Number,
+      required: true,
+    },
+    founderQuota: {
+      type: Number,
+      required: true,
+    },
+    softwareQuota: {
+      type: Number,
+      required: true,
+    },
+    managementQuota: {
+      type: Number,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { designerQuota, softwareQuota, founderQuota, managementQuota } = toRefs(props);
+    const items = reactive([
       {
         id: 'founder',
         role: 'Nigel the Founder',
@@ -46,6 +66,7 @@ export default defineComponent({
         approaching the retirement age, but do not have a concrete retirement plan yet.`,
         photoUrl:
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Startup%20Founder.png?alt=media&token=15137ed8-d6e6-4a73-8cc3-46ea6a671908',
+        quota: founderQuota,
       },
       {
         id: 'management',
@@ -59,6 +80,7 @@ export default defineComponent({
         responsibilities and always going above and beyond for her work.`,
         photoUrl:
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Management%20Associate.png?alt=media&token=147a98ff-d61c-410c-97a5-1514677e5bf7',
+        quota: managementQuota,
       },
       {
         id: 'software',
@@ -70,6 +92,7 @@ export default defineComponent({
         Ninja Van’s backend environment that avoided the company losing millions of dollars.`,
         photoUrl:
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Sofrware%20Engineer.png?alt=media&token=05245982-d1fe-4a1d-9342-303804952cfd',
+        quota: softwareQuota,
       },
       {
         id: 'designer',
@@ -81,8 +104,9 @@ export default defineComponent({
         S$45k by then.`,
         photoUrl:
           'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Designer.png?alt=media&token=b732a2bb-fb03-4a25-9097-6ba77fae4eee',
+        quota: designerQuota,
       },
-    ];
+    ]);
     return {
       items,
     };

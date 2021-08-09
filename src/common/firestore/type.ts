@@ -1,9 +1,13 @@
+export type CharacterType = 'designer' | 'founder' | 'software' | 'management' | 'NA';
+
 export interface Team {
   uid: string;
   email: string;
   name: string;
-  character: 'designer' | 'NA';
+  character: CharacterType;
   schedule: string;
+  selectCharacter: boolean;
+  accessTemplate: boolean;
 }
 
 export type Teams = Team[];
@@ -25,3 +29,11 @@ export interface Character {
 }
 
 export type Characters = Character[];
+
+export interface Quota {
+  id: CharacterType;
+  remaining: number;
+  timeslot: boolean[];
+}
+
+export type Quotas = Quota[];

@@ -1,12 +1,12 @@
 <template>
   <v-footer app padless>
-    <v-card flat tile class="text-center" color="accent2" width="100vw">
+    <v-card flat tile class="text-center pa-0 ma-0" color="accent2" width="100vw">
       <v-card-text class="secondary--text">
         <strong>ICMS SINGAPORE </strong> &copy; {{ new Date().getFullYear() }}
       </v-card-text>
       <v-card-text>
-        <v-row justify="center">
-          <v-col cols="6">
+        <v-row justify="center" no-gutters>
+          <v-col cols="10" md="6">
             <v-btn text fab small href="https://www.instagram.com/icmscholars/" target="_blank">
               <v-icon color="secondary"> mdi-instagram </v-icon>
             </v-btn>

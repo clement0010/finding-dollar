@@ -5,10 +5,13 @@ import {
   adminUser,
   characters,
   functions,
+  initialLeaderboard,
   log,
   populateAdminDatabase,
   populateCharacterDatabase,
+  populateLeaderboardDatabase,
   populateTeamDatabase,
+  quota,
   teams,
 } from './common';
 import { apiValidation } from './express/middleware';
@@ -23,8 +26,9 @@ app.post('/', async (request, response) => {
     log('info', 'Incoming populate team database request', { structuredData: true });
 
     await populateTeamDatabase(teams);
-    await populateCharacterDatabase(characters);
+    await populateCharacterDatabase(characters, quota);
     await populateAdminDatabase(adminUser);
+    await populateLeaderboardDatabase(initialLeaderboard);
     response.send(
       JSON.stringify({
         message: 'Completed populate team database',

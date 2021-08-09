@@ -1,12 +1,12 @@
-import { teamProfile } from '@/composable/store';
+import { teamProfile, quota } from '@/composable/store';
 import { UpdateData } from '../type';
-import { Character, Team } from './type';
+import { Character, CharacterType, Quotas, Team } from './type';
 import { db } from './utils';
 
 export const getTeamProfileFromDb = async (uid: string): Promise<Team | undefined> => {
   const snapshot = await db.teams.doc(uid);
-  await snapshot.onSnapshot((doc) => {
-    console.log('Live Data Called');
+  snapshot.onSnapshot((doc) => {
+    console.log('Live Data Called', { data: doc.data() });
     teamProfile.value = doc.data();
   });
   return (await snapshot.get()).data();
@@ -28,4 +28,19 @@ export const getCharacterFromDb = async (character: string): Promise<Character |
   const document = await db.characters.doc(character).get();
 
   return document.data();
+};
+
+export const getCharacterQuotaFromDb = async (): Promise<void> => {
+  const collection = await db.quota;
+  collection.onSnapshot((querySnapshot) => {
+    const result: Quotas = [];
+    querySnapshot.forEach((doc) => {
+      result.push({
+        ...doc.data(),
+        id: doc.id as CharacterType,
+      });
+    });
+    quota.value = result;
+    console.log('Quota Data Called', { data: quota.value });
+  });
 };
