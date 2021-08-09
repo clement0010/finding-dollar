@@ -21,3 +21,8 @@ export const log = (type: LogType, message: string, data?: Record<string, unknow
 
 export const REGION = 'asia-southeast2';
 export const SLACK_WEBHOOK_URL = config().slack.url;
+
+export enum Schedule {
+  First = '1628945400',
+  Second = '1628946900',
+}

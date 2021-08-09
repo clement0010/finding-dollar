@@ -580,21 +580,21 @@ export const quota: Quotas = [
   {
     id: 'designer',
     remaining: 2,
-    timeslot: [false, false],
+    timeslot: [true, true],
   },
   {
     id: 'founder',
     remaining: 3,
-    timeslot: [false, false, false],
+    timeslot: [true, true, true],
   },
   {
     id: 'software',
     remaining: 3,
-    timeslot: [false, false, false],
+    timeslot: [true, true, true],
   },
   {
     id: 'management',
     remaining: 2,
-    timeslot: [false, false],
+    timeslot: [true, true],
   },
 ];

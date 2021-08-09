@@ -19,7 +19,7 @@ app.use(validateFirebaseIdToken);
 
 app.post('/', async (request: FirebaseRequest, response) => {
   try {
-    log('info', 'Incoming select character request', { structuredData: true });
+    log('info', 'Incoming select character request', { structuredData: true, ...request.body });
 
     const { role } = request.body;
     const uid = request.user?.uid;
@@ -44,7 +44,7 @@ app.post('/', async (request: FirebaseRequest, response) => {
 
     await sendSlackMessage(
       '[User Action]',
-      `${uid} has *successfully* to select a character - ${role}.`,
+      `${uid} has *successfully* selected a character - ${role}.`,
     );
     response.send(
       JSON.stringify({

@@ -37,3 +37,23 @@ export interface Quota {
 }
 
 export type Quotas = Quota[];
+
+export interface TeamScore {
+  name: string;
+  score: number;
+}
+
+export type Leaderboard = TeamScore[];
+
+export interface Timeslot {
+  id: number;
+  timeslot: string;
+  availability: boolean;
+}
+
+export type Schedule = Timeslot[];
+
+export interface SchedulePayload {
+  id: number;
+  role: CharacterType;
+}

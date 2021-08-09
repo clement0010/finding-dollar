@@ -40,42 +40,34 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from '@vue/composition-api';
+import {
+  computed,
+  defineComponent,
+  onBeforeMount,
+  onBeforeUnmount,
+  ref,
+} from '@vue/composition-api';
+
+import { getLeaderboardFromDb } from '@/common/firestore/';
+import { leaderboard } from '@/composable/store';
 
 export default defineComponent({
   name: 'LeaderboardCard',
   setup() {
-    const leaderboard = reactive([
-      {
-        name: 'Team 1',
-        score: 1007,
-      },
-      {
-        name: 'Team 2',
-        score: 1001,
-      },
-      {
-        name: 'Team 3',
-        score: 1002,
-      },
-      {
-        name: 'Team 4',
-        score: 1005,
-      },
-      {
-        name: 'Team 5',
-        score: 998,
-      },
-      {
-        name: 'Team 6',
-        score: 999,
-      },
-    ]);
+    let tearDown: () => void;
+    onBeforeMount(async () => {
+      await getLeaderboardFromDb();
+    });
+
+    onBeforeUnmount(() => {
+      tearDown();
+    });
+
     const selected = ref();
     const current = ref(0);
 
     const displayLeaderboard = computed(() => {
-      const sortedLeaderboard = leaderboard.sort((team1, team2) => {
+      const sortedLeaderboard = leaderboard.value.sort((team1, team2) => {
         if (team1.score < team2.score) return 1;
         if (team1.score > team2.score) return -1;
         return 0;

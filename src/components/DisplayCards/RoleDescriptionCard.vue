@@ -4,6 +4,8 @@
       <v-expansion-panel v-for="item in items" :key="item.id">
         <v-expansion-panel-header>
           {{ item.role }}
+          <v-spacer></v-spacer>
+          <span class="text-right grey--text mr-5"> Quota Remaining: {{ item.quota.value }}</span>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-row justify="space-between">

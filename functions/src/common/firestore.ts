@@ -27,6 +27,7 @@ export const populateTeamDatabase = async (teams: Teams): Promise<void> => {
           schedule: 'NA',
           selectCharacter: false,
           accessTemplate: false,
+          breakoutRoom: 0,
         });
     }
 
@@ -120,6 +121,22 @@ export const checkSelectionEligibility = async (teamId: string, role: Roles): Pr
   }
 };
 
+export const checkSchedulingEligibility = async (teamId: string): Promise<boolean> => {
+  try {
+    log('info', 'Incoming query schedule from db', { teamId });
+    const snapshot = await db.collection('teams').doc(teamId).get();
+    log('info', 'Successful query schedule from db', { ...snapshot.data() });
+
+    const schedule = snapshot.data()?.schedule as string;
+    const character = snapshot.data()?.character as string;
+    const selectCharacter = snapshot.data()?.selectCharacter as boolean;
+    return schedule === 'NA' && character !== 'NA' && selectCharacter;
+  } catch (error) {
+    log('error', 'Error query schedule from db', { error });
+    throw error;
+  }
+};
+
 export const decreaseCharacterQuota = async (role: Roles): Promise<void> => {
   try {
     log('info', 'Incoming decrement quota to db', { role });
@@ -146,6 +163,50 @@ export const selectCharacter = async (teamId: string, role: Roles): Promise<void
     log('info', 'Successfully update team role to db');
   } catch (error) {
     log('error', 'Error update team role to db', { error });
+    throw error;
+  }
+};
+
+export const getSchedule = async (role: Roles): Promise<boolean[]> => {
+  try {
+    log('info', 'Incoming get schedule from db', { role });
+    const snapshot = await db.collection('quota').doc(role).get();
+    log('info', 'Successfully get schedule from db', { ...snapshot.data() });
+
+    return snapshot.data()?.timeslot;
+  } catch (error) {
+    log('error', 'Error get schedule from db', { error });
+    throw error;
+  }
+};
+
+export const disableSchedule = async (role: Roles, schedule: boolean[]): Promise<void> => {
+  try {
+    log('info', 'Incoming disable schedule in db', { role });
+    await db.collection('quota').doc(role).update({
+      timeslot: schedule,
+    });
+    log('info', 'Successfully disable schedule in  db');
+  } catch (error) {
+    log('error', 'Error disable schedule in  db', { error });
+    throw error;
+  }
+};
+
+export const selectSchedule = async (
+  teamId: string,
+  schedule: string,
+  breakoutRoom: number,
+): Promise<void> => {
+  try {
+    log('info', 'Incoming update team schedule to db', { teamId, schedule });
+    await db.collection('teams').doc(teamId).update({
+      schedule,
+      breakoutRoom,
+    });
+    log('info', 'Successfully update team schedule to db');
+  } catch (error) {
+    log('error', 'Error update team schedule to db', { error });
     throw error;
   }
 };

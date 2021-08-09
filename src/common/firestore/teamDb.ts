@@ -3,13 +3,12 @@ import { UpdateData } from '../type';
 import { Character, CharacterType, Quotas, Team } from './type';
 import { db } from './utils';
 
-export const getTeamProfileFromDb = async (uid: string): Promise<Team | undefined> => {
+export const getTeamProfileFromDb = async (uid: string): Promise<() => void> => {
   const snapshot = await db.teams.doc(uid);
-  snapshot.onSnapshot((doc) => {
+  return snapshot.onSnapshot((doc) => {
     console.log('Live Data Called', { data: doc.data() });
     teamProfile.value = doc.data();
   });
-  return (await snapshot.get()).data();
 };
 
 export const updateTeamProfileFromDb = async (
@@ -30,9 +29,9 @@ export const getCharacterFromDb = async (character: string): Promise<Character |
   return document.data();
 };
 
-export const getCharacterQuotaFromDb = async (): Promise<void> => {
+export const getCharacterQuotaFromDb = async (): Promise<() => void> => {
   const collection = await db.quota;
-  collection.onSnapshot((querySnapshot) => {
+  return collection.onSnapshot((querySnapshot) => {
     const result: Quotas = [];
     querySnapshot.forEach((doc) => {
       result.push({

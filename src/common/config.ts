@@ -4,3 +4,4 @@ export const BASE_URL =
     : 'https://asia-southeast2-finding-dollar.cloudfunctions.net/';
 
 export const SELECTION_ENDPOINT = '/selectCharacter';
+export const SCHEDULING_ENDPOINT = '/selectSchedule';
