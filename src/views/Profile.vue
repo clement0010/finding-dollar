@@ -26,6 +26,7 @@
           <RoleCard
             v-if="selectedCharacter && scheduled"
             :selectedCharacter="teamProfile.character"
+            :rolePlay="teamProfile.schedule"
           />
         </v-card>
       </v-col>

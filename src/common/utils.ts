@@ -1,5 +1,10 @@
+import * as dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
 import { quota } from '@/composable/store';
 import { CharacterType, Schedule } from './firestore/type';
+
+dayjs.extend(utc);
 
 const THOUSANDS_SEPARATORS = /\B(?=(\d{3})+(?!\d))/g;
 
@@ -44,4 +49,8 @@ export const parseSchedule = (data: boolean[], role: CharacterType): Schedule =>
       availability: value,
     };
   });
+};
+
+export const parseTimestamp = (timestamp: string, format: string): string => {
+  return dayjs.unix(Number(timestamp)).utcOffset(8).format(format);
 };

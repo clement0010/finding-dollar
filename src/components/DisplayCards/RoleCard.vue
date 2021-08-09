@@ -33,6 +33,14 @@
             <v-card-text v-if="tab === 0" v-html="character.biography"></v-card-text>
             <v-card-text v-if="tab === 2" v-html="character.scenario"></v-card-text>
             <DataTable v-if="tab === 1" :data="character.breakdown" />
+            <v-container v-if="tab === 3">
+              <v-card-text class="text-center"
+                >Roleplay Schedule: {{ parseTimestamp(rolePlay, 'h:mm a') }}</v-card-text
+              >
+              <FlipCountdown :deadline="rolePlayTime" :showDays="false" />
+              <v-card-text class="text-center">Submission Deadline: 1:50 pm</v-card-text>
+              <FlipCountdown deadline="2021-08-14 13:50" :showDays="false" />
+            </v-container>
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -41,19 +49,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from '@vue/composition-api';
+import { computed, defineComponent, reactive, ref } from '@vue/composition-api';
 
 import useCharacter from '@/composable/characterComposable';
+import { parseTimestamp } from '@/common/';
 
 import DataTable from '@/components/CharacterDetails/DataTable.vue';
+import FlipCountdown from 'vue2-flip-countdown';
 
 export default defineComponent({
   name: 'RoleCard',
   components: {
     DataTable,
+    FlipCountdown,
   },
   props: {
     selectedCharacter: {
+      type: String,
+      required: true,
+    },
+    rolePlay: {
       type: String,
       required: true,
     },
@@ -70,12 +85,19 @@ export default defineComponent({
       {
         tab: 'Role-play Scenario',
       },
+      {
+        tab: 'Time Keeper',
+      },
     ]);
+
+    const rolePlayTime = computed(() => parseTimestamp(props.rolePlay, 'YYYY-MM-DD HH:mm:ss'));
     return {
       tab,
       items,
       character,
       loading,
+      rolePlayTime,
+      parseTimestamp,
     };
   },
 });

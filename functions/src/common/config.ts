@@ -23,6 +23,6 @@ export const REGION = 'asia-southeast2';
 export const SLACK_WEBHOOK_URL = config().slack.url;
 
 export enum Schedule {
-  First = '1628945400',
-  Second = '1628946900',
+  First = '1628916600',
+  Second = '1628918100',
 }
