@@ -1,5 +1,5 @@
 import { ChartOptions } from 'chart.js';
-import { ref, computed } from '@vue/composition-api';
+import { computed } from '@vue/composition-api';
 
 export const barChartConfig: ChartOptions = {
   responsive: true,
@@ -27,7 +27,7 @@ export const barChartConfig: ChartOptions = {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useAnalytics() {
-  const barData = ref<number[]>([]);
+  // const barData = ref<number[]>([]);
 
   const barChartData = computed(() => {
     return {
