@@ -35,6 +35,11 @@
         </router-link>
       </v-col>
       <v-col cols="auto">
+        <router-link to="/tools">
+          <v-btn text rounded class="secondary--text"> Tools </v-btn>
+        </router-link>
+      </v-col>
+      <v-col cols="auto">
         <router-link to="/login" v-if="!authenticated">
           <v-btn text rounded class="secondary--text"> Login </v-btn>
         </router-link>

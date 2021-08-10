@@ -2,7 +2,7 @@ import * as dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 import { quota } from '@/composable/store';
-import { CharacterType, Schedule } from './firestore/type';
+import { CharacterType, FinanceCategory, FinanceTableData, Schedule } from './firestore/type';
 
 dayjs.extend(utc);
 
@@ -53,4 +53,23 @@ export const parseSchedule = (data: boolean[], role: CharacterType): Schedule =>
 
 export const parseTimestamp = (timestamp: string, format: string): string => {
   return dayjs.unix(Number(timestamp)).utcOffset(8).format(format);
+};
+
+export const parseCategoryData = (data: FinanceTableData[], category: FinanceCategory): number => {
+  return data
+    .filter((dataPoint) => dataPoint.category === category)
+    .reduce((accumulate, currentValue) => {
+      return accumulate + currentValue.value;
+    }, 0);
+};
+
+export const parseFinanceData = (data: FinanceTableData[]): number[] => {
+  const wantsData = parseCategoryData(data, 'Wants');
+  const needsData = parseCategoryData(data, 'Needs');
+  const savingsData = parseCategoryData(data, 'Savings');
+  const total = wantsData + needsData + savingsData;
+  const result = [wantsData, needsData, savingsData];
+  return result.map((value) => {
+    return Math.round((value / total) * 100);
+  });
 };
