@@ -5,11 +5,13 @@ import {
   adminUser,
   characters,
   functions,
+  globalVariables,
   initialLeaderboard,
   log,
   populateAdminDatabase,
   populateCharacterDatabase,
   populateLeaderboardDatabase,
+  populatePublicDatabase,
   populateTeamDatabase,
   quota,
   teams,
@@ -29,6 +31,7 @@ app.post('/', async (request, response) => {
     await populateCharacterDatabase(characters, quota);
     await populateAdminDatabase(adminUser);
     await populateLeaderboardDatabase(initialLeaderboard);
+    await populatePublicDatabase(globalVariables);
     response.send(
       JSON.stringify({
         message: 'Completed populate team database',

@@ -3,7 +3,7 @@ import * as short from 'short-uuid';
 import { sendSlackMessage } from '../slack';
 import { admin, db } from './client';
 import { log } from './config';
-import { Characters, Leaderboard, Quotas, Roles, Team, Teams } from './types';
+import { Characters, Global, Leaderboard, Quotas, Roles, Team, Teams } from './types';
 
 export const populateTeamDatabase = async (teams: Teams): Promise<void> => {
   try {
@@ -99,6 +99,19 @@ export const populateLeaderboardDatabase = async (leaderboard: Leaderboard): Pro
     log('info', 'Successfully save leaderboard to db');
   } catch (error) {
     log('error', 'Error saving leaderboard to db', { error });
+    throw error;
+  }
+};
+
+export const populatePublicDatabase = async (globalVariables: Global): Promise<void> => {
+  try {
+    log('info', 'Initalizing public database to db', { globalVariables });
+
+    await db.collection('public').doc('global').set(globalVariables);
+
+    log('info', 'Successfully save public database to db');
+  } catch (error) {
+    log('error', 'Error saving public database to db', { error });
     throw error;
   }
 };
