@@ -1,17 +1,36 @@
 <template>
-  <v-container fluid class="ma-0 pa-0" style="position: absolute; top: 15vh">
+  <v-container fluid class="ma-0 pa-0" style="position: absolute; top: 10vh">
+    <Spinner v-if="loading || selectLoad" />
     <v-row no-gutters justify="center">
       <v-col cols="8">
         <v-card flat color="transparent" class="rounded-xl" v-if="teamProfile">
-          <template slot="progress">
-            <v-progress-linear color="accent1" height="5" indeterminate></v-progress-linear>
-          </template>
-
+          <v-card-title class="justify-center font-weight-bold"
+            >Welcome {{ teamProfile.name }}! &#128512;</v-card-title
+          >
           <v-card-title v-if="!selectedCharacter" class="justify-center font-weight-bold"
             >Please select a Character.</v-card-title
           >
-          <RoleCard v-if="selectedCharacter" :selectedCharacter="teamProfile.character" />
-          <RoleDescription v-if="!selectedCharacter" @selectCharacter="selectCharacter" />
+          <RoleDescription
+            v-if="!selectedCharacter"
+            @selectCharacter="selectCharacter"
+            :managementQuota="managementQuota"
+            :softwareQuota="softwareQuota"
+            :founderQuota="founderQuota"
+            :designerQuota="designerQuota"
+            :viewCharacter="viewCharacter"
+          />
+          <ScheduleTable
+            v-if="selectedCharacter && !scheduled"
+            :role="teamProfile.character"
+            @selectSchedule="selectSchedule"
+          />
+          <RoleCard
+            v-if="selectedCharacter && scheduled"
+            :selectedCharacter="teamProfile.character"
+            :rolePlay="teamProfile.schedule"
+            :templateLink="teamProfile.templateLink"
+            :disable="!viewTemplate"
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -25,32 +44,53 @@ import useTeam from '@/composable/teamComposition';
 
 import RoleCard from '@/components/DisplayCards/RoleCard.vue';
 import RoleDescription from '@/components/DisplayCards/RoleDescriptionCard.vue';
+import ScheduleTable from '@/components/CharacterDetails/ScheduleTable.vue';
+import Spinner from '@/components/Spinner.vue';
 import { teamProfile } from '@/composable/store';
 
 export default defineComponent({
   name: 'Profile',
-  components: { RoleCard, RoleDescription },
+  components: { RoleCard, RoleDescription, ScheduleTable, Spinner },
   setup(_, { root }) {
     const teamId = root.$route.params.id;
 
-    const { loading, error, updateTeamProfile } = useTeam(teamId);
+    const {
+      loading,
+      error,
+      managementQuota,
+      softwareQuota,
+      founderQuota,
+      designerQuota,
+      selectCharacter,
+      selectSchedule,
+      selectLoad,
+      viewCharacter,
+      viewTemplate,
+    } = useTeam(teamId);
 
     const selectedCharacter = computed(() => {
-      return teamProfile.value?.character !== 'NA';
+      return teamProfile.value?.selectCharacter && teamProfile.value?.character !== 'NA';
+    });
+    const scheduled = computed(() => {
+      return teamProfile.value?.schedule !== 'NA';
     });
 
-    const selectCharacter = async (character: string) => {
-      await updateTeamProfile({
-        character,
-      });
-    };
     return {
       selectedCharacter,
       selectCharacter,
+      selectSchedule,
+      selectLoad,
+      scheduled,
+      viewTemplate,
+      viewCharacter,
 
       teamProfile,
       loading,
       error,
+      managementQuota,
+      softwareQuota,
+      founderQuota,
+      designerQuota,
     };
   },
 });

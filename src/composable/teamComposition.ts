@@ -1,7 +1,19 @@
-import { getTeamProfileFromDb, updateTeamProfileFromDb } from '@/common/firestore/teamDb';
-import { computed, onBeforeMount, ref } from '@vue/composition-api';
+import {
+  findQuotaRemaining,
+  getGlobalState,
+  selectCharacterHttp,
+  selectScheduleHttp,
+} from '@/common';
+import {
+  getCharacterQuotaFromDb,
+  getTeamProfileFromDb,
+  updateTeamProfileFromDb,
+} from '@/common/firestore/teamDb';
+import { CharacterType, SchedulePayload } from '@/common/firestore/type';
+import { computed, onBeforeMount, ref, onBeforeUnmount } from '@vue/composition-api';
+import { getToken } from './authComposition';
 import useSnackbar from './snackbarComposition';
-import { teamProfile } from './store';
+import { teamProfile, viewCharacter, viewTemplate } from './store';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useTeam(uid: string) {
@@ -10,10 +22,14 @@ export default function useTeam(uid: string) {
 
   const { alert, success } = useSnackbar();
 
+  let teardown1: () => void;
+  let teardown2: () => void;
+  let teardown3: () => void;
+
   const fetchTeamProfile = async () => {
     try {
       loading.value = true;
-      teamProfile.value = await getTeamProfileFromDb(uid);
+      teardown1 = await getTeamProfileFromDb(uid);
       error.value = false;
     } catch (err) {
       console.error(err);
@@ -42,16 +58,97 @@ export default function useTeam(uid: string) {
     }
   };
 
+  const getCharacterQuota = async (): Promise<void> => {
+    try {
+      loading.value = true;
+      teardown2 = await getCharacterQuotaFromDb();
+      error.value = false;
+    } catch (err) {
+      console.error(err);
+      error.value = true;
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const selectLoad = ref(false);
+  const selectCharacter = async (character: CharacterType) => {
+    selectLoad.value = true;
+    try {
+      const token = await getToken();
+      if (!token) {
+        console.log('No Token available');
+        return;
+      }
+
+      const result = await selectCharacterHttp(token, character);
+      if (result === 'Not eligible') {
+        alert('Quota Full');
+        return;
+      }
+      success('Successfully selected the character!');
+    } catch (err) {
+      alert('Oh no! Error selecting character!');
+      console.error(err);
+    } finally {
+      selectLoad.value = false;
+    }
+  };
+
+  const selectSchedule = async (payload: SchedulePayload) => {
+    selectLoad.value = true;
+    try {
+      const token = await getToken();
+      if (!token) {
+        console.log('No Token available');
+        return;
+      }
+      const { id, role } = payload;
+      const result = await selectScheduleHttp(token, id, role);
+      if (result === 'Not eligible') {
+        alert('Quota Full');
+        return;
+      }
+
+      success('Successfully selected the schedule!');
+    } catch (err) {
+      alert('Oh no! Error selecting schedule!');
+      console.error(err);
+    } finally {
+      selectLoad.value = false;
+    }
+  };
+
   onBeforeMount(async () => {
     await fetchTeamProfile();
+    await getCharacterQuota();
+    teardown3 = await getGlobalState();
+  });
+
+  onBeforeUnmount(() => {
+    teardown1();
+    teardown2();
+    teardown3();
   });
 
   return {
     fetchTeamProfile,
     updateTeamProfile,
+    getCharacterQuota,
+
+    designerQuota: computed(() => findQuotaRemaining('designer')),
+    founderQuota: computed(() => findQuotaRemaining('founder')),
+    managementQuota: computed(() => findQuotaRemaining('management')),
+    softwareQuota: computed(() => findQuotaRemaining('software')),
 
     loading: computed(() => loading.value),
     error: computed(() => error.value),
     teamProfile: computed(() => teamProfile.value),
+
+    selectCharacter,
+    selectSchedule,
+    selectLoad: computed(() => selectLoad.value),
+    viewCharacter: computed(() => viewCharacter.value),
+    viewTemplate: computed(() => viewTemplate.value),
   };
 }

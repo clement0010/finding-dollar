@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="position: absolute; top: 15vh">
+  <v-container fluid style="position: absolute; top: 10vh">
     <v-row no-gutters justify="center">
       <v-col cols="8">
         <AgendaCard />

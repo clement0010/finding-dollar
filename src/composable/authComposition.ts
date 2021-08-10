@@ -22,6 +22,12 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
+export const getToken = async (): Promise<string | undefined> => {
+  const token = await auth.currentUser?.getIdToken();
+  console.log('Token: ', { token });
+  return token;
+};
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useAuth() {
   const error = ref(false);
