@@ -12,7 +12,8 @@
             I Choose You!
           </v-btn>
         </template>
-        <span v-if="disabled">Quota full!</span>
+        <span v-if="!viewCharacter">Character selection is disabled!</span>
+        <span v-if="quotaFull">Quota full!</span>
         <span v-if="!disabled">Choose me!</span>
       </v-tooltip>
     </template>
@@ -51,6 +52,14 @@ export default defineComponent({
       required: true,
     },
     disabled: {
+      type: Boolean,
+      required: true,
+    },
+    viewCharacter: {
+      type: Boolean,
+      required: true,
+    },
+    quotaFull: {
       type: Boolean,
       required: true,
     },

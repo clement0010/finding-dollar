@@ -21,3 +21,7 @@ export const uid = ref('');
 export const snackbarActivate = ref(false);
 export const snackbarMessage = ref('');
 export const snackbarStatus = ref('');
+
+// Global State
+export const viewCharacter = ref(false);
+export const viewTemplate = ref(false);

@@ -56,7 +56,7 @@ export default defineComponent({
   setup() {
     let tearDown: () => void;
     onBeforeMount(async () => {
-      await getLeaderboardFromDb();
+      tearDown = await getLeaderboardFromDb();
     });
 
     onBeforeUnmount(() => {

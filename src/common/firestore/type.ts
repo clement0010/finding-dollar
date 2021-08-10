@@ -7,7 +7,6 @@ export interface Team {
   character: CharacterType;
   schedule: string;
   selectCharacter: boolean;
-  accessTemplate: boolean;
 }
 
 export type Teams = Team[];
@@ -56,4 +55,9 @@ export type Schedule = Timeslot[];
 export interface SchedulePayload {
   id: number;
   role: CharacterType;
+}
+
+export interface GlobalState {
+  viewCharacter: boolean;
+  viewTemplate: boolean;
 }

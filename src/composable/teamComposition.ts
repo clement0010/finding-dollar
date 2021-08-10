@@ -1,4 +1,9 @@
-import { findQuotaRemaining, selectCharacterHttp, selectScheduleHttp } from '@/common';
+import {
+  findQuotaRemaining,
+  getGlobalState,
+  selectCharacterHttp,
+  selectScheduleHttp,
+} from '@/common';
 import {
   getCharacterQuotaFromDb,
   getTeamProfileFromDb,
@@ -8,7 +13,7 @@ import { CharacterType, SchedulePayload } from '@/common/firestore/type';
 import { computed, onBeforeMount, ref, onBeforeUnmount } from '@vue/composition-api';
 import { getToken } from './authComposition';
 import useSnackbar from './snackbarComposition';
-import { teamProfile } from './store';
+import { teamProfile, viewCharacter, viewTemplate } from './store';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useTeam(uid: string) {
@@ -19,6 +24,7 @@ export default function useTeam(uid: string) {
 
   let teardown1: () => void;
   let teardown2: () => void;
+  let teardown3: () => void;
 
   const fetchTeamProfile = async () => {
     try {
@@ -116,11 +122,13 @@ export default function useTeam(uid: string) {
   onBeforeMount(async () => {
     await fetchTeamProfile();
     await getCharacterQuota();
+    teardown3 = await getGlobalState();
   });
 
   onBeforeUnmount(() => {
     teardown1();
     teardown2();
+    teardown3();
   });
 
   return {
@@ -140,5 +148,7 @@ export default function useTeam(uid: string) {
     selectCharacter,
     selectSchedule,
     selectLoad: computed(() => selectLoad.value),
+    viewCharacter: computed(() => viewCharacter.value),
+    viewTemplate: computed(() => viewTemplate.value),
   };
 }

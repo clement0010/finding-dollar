@@ -26,15 +26,19 @@ export default defineComponent({
     const items = [
       {
         event: 'Fireside Chat with MASIS',
-        content: `It will be a 40-minutes chat with a speaker from MASIS. The chat will revolve
-        around personal finance as a student in Singapore and also the speaker’s experience when
-        transitioning from a student to a working professional in Singapore. The participants will
-        be able to get deeper insights on the ways to survive financially in Singapore.`,
+        content: `You will be engaged in an exciting 40-minute chat revolving around personal
+        finance from a student standpoint. Hear from our esteemed speakers from the Malaysian
+        Association in Singapore (MASIS) about their experience as a student in Singapore, as they
+        share tips to transition from a student to a working professional. In this session, we will
+        get up close and personal with Lee Ji En and Goh Kai Xun to get insights on surviving the x3
+        life in Singapore.`,
       },
       {
         event: 'Personal Finance Workshop',
-        content: `It will be conducted by an ICMS alumni from Alumni Network Committee (ANC).
-          The topic of the workshop includes:
+        content: `This workshop will be conducted by a Personal Finance enthusiast, Michelle
+          Chin. She has been contributing to the society with her instagram page @her.duit, sharing
+          personal finance knowledge with the public besides holding a Head of Digital Marketing at
+          Digi-X. Recently, she’s founded Oyen, a start-up focusing on pet insurance.
           <ul>
             <li>Time value of money</li>
             <li>Income Management</li>
@@ -44,10 +48,10 @@ export default defineComponent({
       {
         event: 'Mystery Challenge',
         content: `This challenge will be a hands-on experience for participants to apply the
-        financial literacy knowledge learnt from the previous workshop.They will discuss in a group
-        to strategise the investment and saving plans for the scenarios given.They also need to
-        address the financial problem given. At the end of the challenge, participants will present
-        the ideas on the slide deck and justify the rationale.`,
+        financial literacy knowledge learnt from the previous workshop. You will discuss in a group
+        to strategise the investment and saving plans for the scenarios given. You will also need to
+        address the financial problem given. At the end of the challenge, your team will present the
+        ideas on the slide deck and justify the rationale. `,
       },
     ];
     return {

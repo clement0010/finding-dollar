@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 
 import { firestore } from './client';
-import { Character, TeamScore, Quota, Team } from './type';
+import { Character, TeamScore, Quota, Team, GlobalState } from './type';
 
 // eslint-disable-next-line
 export const converter = <T>() => ({
@@ -19,4 +19,5 @@ export const db = {
   characters: dataPoint<Character>('characters'),
   quota: dataPoint<Quota>('quota'),
   leaderboard: dataPoint<TeamScore>('leaderboard'),
+  global: dataPoint<GlobalState>('public'),
 };

@@ -26,7 +26,6 @@ export const populateTeamDatabase = async (teams: Teams): Promise<void> => {
           character: 'NA',
           schedule: 'NA',
           selectCharacter: false,
-          accessTemplate: false,
           breakoutRoom: 0,
         });
     }

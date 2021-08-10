@@ -19,7 +19,9 @@
           <RoleSelectionButton
             :id="item.id"
             :role="item.role"
-            :disabled="item.quota.value <= 0"
+            :disabled="item.quota.value <= 0 || !viewCharacter"
+            :viewCharacter="viewCharacter"
+            :quotaFull="item.quota.value <= 0"
             @selectCharacter="(payload) => $emit('selectCharacter', payload)"
           />
         </v-expansion-panel-content>
@@ -54,6 +56,12 @@ export default defineComponent({
     managementQuota: {
       type: Number,
       required: true,
+    },
+    viewCharacter: {
+      type: Boolean,
+      default: () => {
+        return false;
+      },
     },
   },
   setup(props) {

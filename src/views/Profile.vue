@@ -17,6 +17,7 @@
             :softwareQuota="softwareQuota"
             :founderQuota="founderQuota"
             :designerQuota="designerQuota"
+            :viewCharacter="viewCharacter"
           />
           <ScheduleTable
             v-if="selectedCharacter && !scheduled"
@@ -27,6 +28,8 @@
             v-if="selectedCharacter && scheduled"
             :selectedCharacter="teamProfile.character"
             :rolePlay="teamProfile.schedule"
+            :templateLink="teamProfile.templateLink"
+            :disable="!viewTemplate"
           />
         </v-card>
       </v-col>
@@ -61,6 +64,8 @@ export default defineComponent({
       selectCharacter,
       selectSchedule,
       selectLoad,
+      viewCharacter,
+      viewTemplate,
     } = useTeam(teamId);
 
     const selectedCharacter = computed(() => {
@@ -76,6 +81,8 @@ export default defineComponent({
       selectSchedule,
       selectLoad,
       scheduled,
+      viewTemplate,
+      viewCharacter,
 
       teamProfile,
       loading,
