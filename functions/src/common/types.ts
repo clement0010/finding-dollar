@@ -57,3 +57,8 @@ export interface Quota {
 }
 
 export type Quotas = Quota[];
+
+export interface Global {
+  viewCharacter: boolean;
+  viewTemplate: boolean;
+}

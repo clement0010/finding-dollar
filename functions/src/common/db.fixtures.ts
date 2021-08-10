@@ -1,4 +1,4 @@
-import { Character, Characters, Quotas, Team, Teams } from './types';
+import { Character, Characters, Global, Quotas, Team, Teams } from './types';
 
 const team1: Team = {
   uid: 'team1',
@@ -555,3 +555,8 @@ export const quota: Quotas = [
     timeslot: [true, true],
   },
 ];
+
+export const globalVariables: Global = {
+  viewCharacter: false,
+  viewTemplate: false,
+};

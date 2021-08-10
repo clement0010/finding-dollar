@@ -61,3 +61,10 @@ export interface GlobalState {
   viewCharacter: boolean;
   viewTemplate: boolean;
 }
+
+export type FinanceCategory = 'Needs' | 'Wants' | 'Savings';
+export interface FinanceTableData {
+  category: FinanceCategory;
+  name: string;
+  value: number;
+}
