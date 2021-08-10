@@ -67,4 +67,5 @@ export interface FinanceTableData {
   category: FinanceCategory;
   name: string;
   value: number;
+  id?: number;
 }

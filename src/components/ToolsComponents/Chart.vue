@@ -1,11 +1,13 @@
 <template>
-  <v-card width="300px" height="300px" class="elevation-5 rounded-lg">
-    <DoughnutChart :chartData="barChartData" />
-  </v-card>
+  <v-row justify="center">
+    <v-card width="300px" height="300px" class="elevation-5 rounded-lg mt-5">
+      <DoughnutChart :chartData="doughnutChartData" :options="doughnutChartConfig" />
+    </v-card>
+  </v-row>
 </template>
 
 <script lang="ts">
-import useAnalytics, { barChartConfig } from '@/composable/chartComposition';
+import useAnalytics, { doughnutChartConfig } from '@/composable/chartComposition';
 import { DoughnutChart } from 'vue-chart-3';
 import { defineComponent } from '@vue/composition-api';
 import { FinanceTableData } from '@/common/firestore/type';
@@ -15,15 +17,16 @@ export default defineComponent({
   props: {
     data: {
       type: Array as () => FinanceTableData[],
+      required: true,
     },
   },
   components: { DoughnutChart },
-  setup() {
-    const { barChartData } = useAnalytics();
+  setup(props) {
+    const { doughnutChartData } = useAnalytics(props.data);
 
     return {
-      barChartData,
-      barChartConfig,
+      doughnutChartConfig,
+      doughnutChartData,
     };
   },
 });
