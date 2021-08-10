@@ -1,5 +1,5 @@
 <template>
-  <v-card :width="500" class="elevation-5 rounded-lg">
+  <v-card width="300px" height="300px" class="elevation-5 rounded-lg">
     <DoughnutChart :chartData="barChartData" />
   </v-card>
 </template>
