@@ -9,37 +9,37 @@
         </v-app-bar-title>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col v-if="authenticated" cols="auto">
+      <v-col v-if="authenticated" cols="1" align="center">
         <router-link :to="{ name: 'Profile', params: { id } }">
-          <v-btn text rounded class="secondary--text"> Profile </v-btn>
+          <v-btn text rounded class="secondary--text pa-0"> Profile </v-btn>
         </router-link>
       </v-col>
-      <v-col cols="auto">
+      <v-col cols="1" md="auto" align="center">
         <router-link to="/agenda">
-          <v-btn text rounded class="secondary--text"> Agenda </v-btn>
+          <v-btn text rounded class="secondary--text pa-0"> Agenda </v-btn>
         </router-link>
       </v-col>
-      <v-col cols="auto">
+      <v-col cols="1" md="auto" align="center">
         <router-link to="/challenge">
-          <v-btn text rounded class="secondary--text"> Challenge </v-btn>
+          <v-btn text rounded class="secondary--text pa-0"> Challenge </v-btn>
         </router-link>
       </v-col>
-      <v-col cols="auto" v-if="authenticated">
+      <v-col cols="1" md="auto" v-if="authenticated" align="center">
         <router-link to="/leaderboard">
-          <v-btn text rounded class="secondary--text"> Leaderboard </v-btn>
+          <v-btn text rounded class="secondary--text pa-0"> Leaderboard </v-btn>
         </router-link>
       </v-col>
-      <v-col cols="auto">
+      <v-col cols="1" md="auto" align="center">
         <router-link to="/team">
-          <v-btn text rounded class="secondary--text"> Team </v-btn>
+          <v-btn text rounded class="secondary--text pa-0"> Team </v-btn>
         </router-link>
       </v-col>
-      <v-col cols="auto">
+      <v-col cols="1" md="auto" align="center">
         <router-link to="/tools">
-          <v-btn text rounded class="secondary--text"> Tools </v-btn>
+          <v-btn text rounded class="secondary--text pa-0"> Tools </v-btn>
         </router-link>
       </v-col>
-      <v-col cols="auto">
+      <v-col cols="1" md="auto" align="center">
         <router-link to="/login" v-if="!authenticated">
           <v-btn text rounded class="secondary--text"> Login </v-btn>
         </router-link>
@@ -47,7 +47,7 @@
           Sign Out
         </v-btn>
       </v-col>
-      <v-col cols="2" v-if="$vuetify.breakpoint.lgAndUp">
+      <v-col cols="2" v-if="$vuetify.breakpoint.lgAndUp" align="center" class="pa-0">
         <v-row justify="center" align="center">
           <v-col cols="2">
             <v-btn text fab small href="https://www.facebook.com/icmscholars" target="_blank">
