@@ -1,32 +1,54 @@
 <template>
   <v-container fluid class="pa-0 ma-0">
-    <v-expansion-panels accordion class="elevation-5 rounded-lg primary">
-      <v-expansion-panel v-for="item in items" :key="item.id">
-        <v-expansion-panel-header>
-          {{ item.role }}
-          <v-spacer></v-spacer>
-          <span class="text-right grey--text mr-5"> Quota Remaining: {{ item.quota.value }}</span>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <v-row justify="space-between">
-            <v-col cols="10" class="text-justify text-body-2">
-              {{ item.content }}
-            </v-col>
-            <v-col cols="2">
-              <v-img :src="item.photoUrl" contain width="100px" />
-            </v-col>
-          </v-row>
-          <RoleSelectionButton
-            :id="item.id"
-            :role="item.role"
-            :disabled="item.quota.value <= 0 || !viewCharacter"
-            :viewCharacter="viewCharacter"
-            :quotaFull="item.quota.value <= 0"
-            @selectCharacter="(payload) => $emit('selectCharacter', payload)"
-          />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+    <v-card
+      flat
+      :height="$vuetify.breakpoint.smAndUp ? '75vh' : '50vh'"
+      class="text-justify rounded-lg scroll pa-1"
+      color="transparent"
+    >
+      <v-card-title class="justify-center font-weight-bold pt-0 px-0"
+        >Please select a Character.</v-card-title
+      >
+      <v-expansion-panels accordion class="elevation-5 rounded-lg primary">
+        <v-expansion-panel v-for="item in items" :key="item.id">
+          <v-expansion-panel-header>
+            {{ item.role }}
+            <v-spacer></v-spacer>
+            <span class="text-right grey--text mr-5"> Quota Remaining: {{ item.quota.value }}</span>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-row justify="space-between">
+              <v-col
+                cols="12"
+                md="9"
+                sm="8"
+                class="text-justify text-body-2"
+                :order="$vuetify.breakpoint.smAndUp ? 1 : 12"
+              >
+                {{ item.content }}
+              </v-col>
+              <v-col
+                cols="12"
+                md="3"
+                sm="4"
+                :order="$vuetify.breakpoint.smAndUp ? 12 : 1"
+                align="center"
+              >
+                <v-img :src="item.photoUrl" contain width="10rem" />
+              </v-col>
+            </v-row>
+            <RoleSelectionButton
+              :id="item.id"
+              :role="item.role"
+              :disabled="item.quota.value <= 0 || !viewCharacter"
+              :viewCharacter="viewCharacter"
+              :quotaFull="item.quota.value <= 0"
+              @selectCharacter="(payload) => $emit('selectCharacter', payload)"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-card>
   </v-container>
 </template>
 
@@ -123,3 +145,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.scroll {
+  overflow-y: auto;
+}
+</style>

@@ -50,4 +50,23 @@ strong {
   font-weight: 900;
   color: black;
 }
+
+.scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px #f3f3ff;
+  -webkit-box-shadow: inset 0 0 6px #f3f3ff;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f3f3ff;
+}
 </style>

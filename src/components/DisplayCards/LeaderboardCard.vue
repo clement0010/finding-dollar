@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pa-0 mt-10">
+  <v-container fluid class="pa-0 mt-5">
     <v-card class="elevation-2 rounded-lg" color="primary" max-width="70vw">
       <v-list class="pa-0 ma-0 rounded-lg">
         <v-list-item-group v-model="selected" mandatory active-class="secondary white--text">
@@ -14,10 +14,12 @@
                   ></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content>
-                  <v-list-item-title :class="{ 'secondary--text': !active }">{{
+                  <v-list-item-title :class="{ 'secondary--text': !active }" class="text-left">{{
                     team.name
                   }}</v-list-item-title>
-                  <v-list-item-subtitle :class="{ 'white--text': active }" class="text-caption"
+                  <v-list-item-subtitle
+                    :class="{ 'white--text': active }"
+                    class="text-caption text-left"
                     >{{ team.score }} points</v-list-item-subtitle
                   >
                 </v-list-item-content>

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row no-gutters justify="center">
-      <v-col cols="8">
+      <v-col cols="12" md="8" align="center">
         <LeaderboardCard />
       </v-col>
     </v-row>

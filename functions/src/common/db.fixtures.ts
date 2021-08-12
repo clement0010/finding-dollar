@@ -179,7 +179,7 @@ const designer: Character = {
     that his in-laws understand that the couple respects them and that they are trying to make a
     decision that they are confident with. `,
   photoUrl:
-    'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Designer.png?alt=media&token=b732a2bb-fb03-4a25-9097-6ba77fae4eee',
+    'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/designer.png?alt=media&token=cf9bf8f4-3ffe-437e-9b34-740d5edc286b',
 };
 
 const founder: Character = {
@@ -383,7 +383,7 @@ const software: Character = {
     required: You will need to act as Max and persuade your HR regarding your
     capabilities in order to ask for your pay raise by highlighting your achievements. `,
   photoUrl:
-    'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Sofrware%20Engineer.png?alt=media&token=05245982-d1fe-4a1d-9342-303804952cfd',
+    'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/software.png?alt=media&token=03a8a110-0a60-42e8-8776-2321cc5bd03d',
 };
 
 const management: Character = {
@@ -485,7 +485,7 @@ const management: Character = {
     Action required: You will need to act as Dory and persuade your supervisor regarding your
     capabilities in order to ask for your pay raise by highlighting your achievements.`,
   photoUrl:
-    'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Management%20Associate.png?alt=media&token=147a98ff-d61c-410c-97a5-1514677e5bf7',
+    'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/management.png?alt=media&token=2a517b88-ccb0-4175-aa41-5710c34c9729',
 };
 
 export const characters: Characters = [designer, founder, software, management];
@@ -559,4 +559,5 @@ export const quota: Quotas = [
 export const globalVariables: Global = {
   viewCharacter: false,
   viewTemplate: false,
+  submissionTime: '1628920200',
 };
