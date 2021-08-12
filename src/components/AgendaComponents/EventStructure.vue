@@ -1,14 +1,43 @@
 <template>
   <v-container fluid>
     <v-expansion-panels accordion class="elevation-5 rounded-lg primary" multiple>
-      <v-expansion-panel v-for="item in items" :key="item.role">
+      <v-expansion-panel v-for="(item, index) in items" :key="item.event">
         <v-expansion-panel-header>
           {{ item.event }}
         </v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-row justify="space-between">
-            <v-col cols="10" class="text-justify text-body-2">
-              {{ item.content }}
+            <v-col cols="12" class="text-justify text-body-2">
+              <div v-html="item.content"></div>
+              <v-row
+                no-gutters
+                class="mt-5"
+                justify="space-around"
+                style="min-height: 7vw"
+                v-if="index === 0 || index === 1"
+              >
+                <v-col
+                  cols="2"
+                  style="position: relative"
+                  v-for="card in index === 0 ? cards : cards1"
+                  :key="card.title"
+                >
+                  <v-img :src="card.src" max-height="9rem" contain class="photo" />
+                </v-col>
+              </v-row>
+              <v-row justify="space-around" v-if="index === 0 || index === 1">
+                <v-col
+                  v-for="card in index === 0 ? cards : cards1"
+                  :key="card.title"
+                  class="text-center font-weight-bold secondary--text"
+                >
+                  <p>{{ card.title }}</p>
+                  <v-divider class="pt-1 mb-2 mx-auto accent1" style="max-width: 35px" />
+                  <v-btn text fab small :href="card.linkedIn" target="_blank">
+                    <v-icon color="secondary"> mdi-linkedin </v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
         </v-expansion-panel-content>
@@ -39,6 +68,8 @@ export default defineComponent({
           Chin. She has been contributing to the society with her instagram page @her.duit, sharing
           personal finance knowledge with the public besides holding a Head of Digital Marketing at
           Digi-X. Recently, she’s founded Oyen, a start-up focusing on pet insurance.
+          <br />
+          <br />
           <ul>
             <li>Time value of money</li>
             <li>Income Management</li>
@@ -54,8 +85,30 @@ export default defineComponent({
         ideas on the slide deck and justify the rationale. `,
       },
     ];
+
+    const cards = [
+      {
+        title: 'Lee Ji En',
+        src: 'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/JiEn.jpg?alt=media&token=905d6e37-1fdf-4dd1-b1f9-c2ea1e0523dd',
+        linkedIn: 'https://www.linkedin.com/in/jienlee/',
+      },
+      {
+        title: 'Goh Kai Xun',
+        src: 'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/kaixun.jpg?alt=media&token=a7a69606-274f-42cf-bcd7-40772216b3bf',
+        linkedIn: 'https://www.linkedin.com/in/kai-xun-goh-872a9567/',
+      },
+    ];
+    const cards1 = [
+      {
+        title: 'Michelle Chin',
+        src: 'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/michelle.png?alt=media&token=1987bbc7-fb04-4da9-b20e-6fd6a235c715',
+        linkedIn: 'https://www.linkedin.com/in/michellecsw/',
+      },
+    ];
     return {
       items,
+      cards,
+      cards1,
     };
   },
 });
