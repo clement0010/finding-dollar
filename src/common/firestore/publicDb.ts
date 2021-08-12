@@ -1,4 +1,4 @@
-import { leaderboard, viewCharacter, viewTemplate } from '@/composable/store';
+import { leaderboard, submissionTime, viewCharacter, viewTemplate } from '@/composable/store';
 
 import { Leaderboard } from './type';
 import { db } from './utils';
@@ -22,5 +22,6 @@ export const getGlobalState = async (): Promise<() => void> => {
     console.log('Global Data Called', { data: doc.data() });
     viewCharacter.value = doc.data()?.viewCharacter || false;
     viewTemplate.value = doc.data()?.viewTemplate || false;
+    submissionTime.value = doc.data()?.submissionTime || '1628920200';
   });
 };

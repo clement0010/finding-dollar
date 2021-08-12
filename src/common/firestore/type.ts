@@ -60,6 +60,7 @@ export interface SchedulePayload {
 export interface GlobalState {
   viewCharacter: boolean;
   viewTemplate: boolean;
+  submissionTime: string;
 }
 
 export type FinanceCategory = 'Needs' | 'Wants' | 'Savings';

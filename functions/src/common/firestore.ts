@@ -106,9 +106,7 @@ export const populateLeaderboardDatabase = async (leaderboard: Leaderboard): Pro
 export const populatePublicDatabase = async (globalVariables: Global): Promise<void> => {
   try {
     log('info', 'Initalizing public database to db', { globalVariables });
-
     await db.collection('public').doc('global').set(globalVariables);
-
     log('info', 'Successfully save public database to db');
   } catch (error) {
     log('error', 'Error saving public database to db', { error });

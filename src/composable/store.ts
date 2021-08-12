@@ -25,3 +25,4 @@ export const snackbarStatus = ref('');
 // Global State
 export const viewCharacter = ref(false);
 export const viewTemplate = ref(false);
+export const submissionTime = ref('');

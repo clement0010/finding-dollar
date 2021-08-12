@@ -35,7 +35,7 @@ export default defineComponent({
   setup() {
     const headers = [
       {
-        text: 'Income and Expenses',
+        text: 'Items',
         align: 'start',
         value: 'name',
         groupable: false,

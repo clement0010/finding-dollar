@@ -42,8 +42,10 @@
                 >Roleplay Schedule: {{ parseTimestamp(rolePlay, 'h:mm a') }}</v-card-text
               >
               <FlipCountdown :deadline="rolePlayTime" :showDays="false" />
-              <v-card-text class="text-center">Submission Deadline: 1:50 pm</v-card-text>
-              <FlipCountdown deadline="2021-08-14 13:50" :showDays="false" />
+              <v-card-text class="text-center"
+                >Submission Deadline: {{ parseTimestamp(submissionTime, 'h:mm a') }}</v-card-text
+              >
+              <FlipCountdown :deadline="submission" :showDays="false" />
             </v-container>
           </v-card>
         </v-tab-item>
@@ -56,6 +58,7 @@
 import { computed, defineComponent, reactive, ref } from '@vue/composition-api';
 
 import useCharacter from '@/composable/characterComposable';
+import { submissionTime } from '@/composable/store';
 import { parseTimestamp } from '@/common/';
 
 import DataTable from '@/components/CharacterDetails/DataTable.vue';
@@ -104,12 +107,15 @@ export default defineComponent({
     ]);
 
     const rolePlayTime = computed(() => parseTimestamp(props.rolePlay, 'YYYY-MM-DD HH:mm:ss'));
+    const submission = computed(() => parseTimestamp(submissionTime.value, 'YYYY-MM-DD HH:mm:ss'));
     return {
       tab,
       items,
       character,
       loading,
       rolePlayTime,
+      submission,
+      submissionTime: computed(() => submissionTime.value),
       parseTimestamp,
     };
   },

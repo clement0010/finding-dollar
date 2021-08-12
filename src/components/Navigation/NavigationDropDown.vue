@@ -94,15 +94,6 @@
               </v-list-item>
             </router-link>
 
-            <router-link to="/leaderboard">
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon color="secondary">mdi-trophy-outline</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content> Leaderboard </v-list-item-content>
-              </v-list-item>
-            </router-link>
-
             <router-link to="/team">
               <v-list-item>
                 <v-list-item-icon>

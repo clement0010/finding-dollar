@@ -27,6 +27,7 @@ const routes: Array<RouteConfig> = [
     path: '/leaderboard',
     name: 'Leaderboard',
     component: () => import(/* webpackChunkName: "leaderboard" */ '../views/Leaderboard.vue'),
+    beforeEnter: authGuard,
   },
   {
     path: '/team',
