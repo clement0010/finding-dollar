@@ -1,0 +1,8 @@
+{
+  "slack": {
+    "url": "https://hooks.slack.com/services/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"
+  },
+  "admin": {
+    "secret": "376cde32e5bed5508a1b03ce089d84faa482f5ab681ce79683275220dd0ccd4f"
+  }
+}
