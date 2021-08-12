@@ -1,4 +1,4 @@
-import { teamProfile, quota } from '@/composable/store';
+import { teamProfile, quota, adminTeams } from '@/composable/store';
 import { UpdateData } from '../type';
 import { Character, CharacterType, Quotas, Team } from './type';
 import { db } from './utils';
@@ -41,5 +41,19 @@ export const getCharacterQuotaFromDb = async (): Promise<() => void> => {
     });
     quota.value = result;
     console.log('Quota Data Called', { data: quota.value });
+  });
+};
+
+export const getProfileFromDb = async (): Promise<() => void> => {
+  const collection = await db.teams;
+  return collection.onSnapshot((querySnapshot) => {
+    const result: Team[] = [];
+    querySnapshot.forEach((doc) => {
+      result.push({
+        ...doc.data(),
+      });
+    });
+    adminTeams.value = result;
+    console.log('Team Data Called', { data: adminTeams.value });
   });
 };

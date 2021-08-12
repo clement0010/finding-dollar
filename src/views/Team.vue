@@ -1,10 +1,17 @@
 <template>
-  <v-container fluid class="ma-0 pa-0">
-    <v-row justify="center" class="mb-15 secondary--text">
-      <h1>Find out more about ICMS Singapore</h1>
-    </v-row>
+  <v-container
+    fluid
+    class="ma-0 pa-0"
+    style="position: absolute"
+    :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
+  >
     <v-row no-gutters justify="center">
-      <v-col cols="8">
+      <v-col cols="12" align="center">
+        <h1 class="text-md-h3 text-sm-h6 text-h6 mb-10 secondary--text">
+          Find out more about ICMS Singapore
+        </h1>
+      </v-col>
+      <v-col cols="11" md="8" align="center">
         <TeamCard />
       </v-col>
     </v-row>
@@ -21,3 +28,16 @@ export default defineComponent({
   components: { TeamCard },
 });
 </script>
+
+<style lang="scss" scoped>
+.mobile {
+  top: 15vh;
+}
+.web {
+  top: 25vh;
+}
+.scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+</style>

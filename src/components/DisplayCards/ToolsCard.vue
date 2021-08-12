@@ -34,7 +34,6 @@
                     :rules="[requireInputRule]"
                   ></v-select>
                 </v-col>
-
                 <v-col cols="6" md="3">
                   <v-text-field
                     v-model="tableValue.name"
@@ -45,7 +44,6 @@
                     :rules="[requireInputRule]"
                   ></v-text-field>
                 </v-col>
-
                 <v-col cols="8" md="3">
                   <v-text-field
                     v-model="tableValue.value"

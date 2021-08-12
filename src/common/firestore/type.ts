@@ -7,6 +7,7 @@ export interface Team {
   character: CharacterType;
   schedule: string;
   selectCharacter: boolean;
+  breakoutRoom: number;
 }
 
 export type Teams = Team[];

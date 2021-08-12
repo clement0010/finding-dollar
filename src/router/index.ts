@@ -24,8 +24,16 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "agenda" */ '../views/Agenda.vue'),
   },
   {
+    path: '/admin',
+    name: 'Admin',
+    meta: { requiresAuth: true, admin: true },
+    component: () => import(/* webpackChunkName: "admin" */ '../views/Admin.vue'),
+    beforeEnter: authGuard,
+  },
+  {
     path: '/leaderboard',
     name: 'Leaderboard',
+    meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "leaderboard" */ '../views/Leaderboard.vue'),
     beforeEnter: authGuard,
   },

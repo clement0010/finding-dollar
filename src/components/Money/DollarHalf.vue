@@ -9,32 +9,12 @@ export default defineComponent({
   name: 'MoneyDollarHalf',
   setup(_, { root }) {
     const width = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 200;
-        case 'sm':
-          return 300;
-        case 'md':
-          return 300;
-        case 'lg':
-          return 450;
-        case 'xl':
-          return 450;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 300;
+      return 200;
     });
     const height = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 200;
-        case 'sm':
-          return 300;
-        case 'md':
-          return 300;
-        case 'lg':
-          return 450;
-        case 'xl':
-          return 450;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 300;
+      return 200;
     });
     return {
       width,
