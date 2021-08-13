@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid class="ma-0 pa-0" id="bottom-left">
-    <Graph class="graph" />
-    <DollarFolded class="first-dollar" />
-    <Coin class="first-coin" />
-    <CoinDouble class="second-coin" />
+  <v-container fluid class="ma-0 pa-0">
+    <Graph class="first-graph" />
+    <DollarFull class="first-dollar" />
+    <Coin class="first-coin-single" />
+    <CoinDouble class="first-coin-double" />
   </v-container>
 </template>
 
@@ -11,7 +11,7 @@
 import { defineComponent } from '@vue/composition-api';
 
 import NavigationBar from '@/components/Navigation/NavigationBar.vue';
-import DollarFolded from '@/components/Money/DollarFolded.vue';
+import DollarFull from '@/components/Money/DollarFull.vue';
 import Coin from '@/components/Money/Coin.vue';
 import CoinDouble from '@/components/Money/CoinDouble.vue';
 import Graph from '@/components/Money/Graph.vue';
@@ -20,37 +20,37 @@ export default defineComponent({
   name: 'BottomLeft',
   components: {
     NavigationBar,
-    DollarFolded,
-    CoinDouble,
+    DollarFull,
     Coin,
+    CoinDouble,
     Graph,
   },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .first-dollar {
   position: absolute;
-  transform: rotate(15deg) scale(0.8);
-  bottom: -20%;
-  left: -5%;
+  transform: rotate(210deg);
+  bottom: -10rem;
+  left: -10rem;
 }
-.first-coin {
+.first-coin-single {
   position: absolute;
+  bottom: 20%;
+  right: 90%;
+  transform: scale(1.5);
+}
+.first-graph {
+  position: absolute;
+  top: 0;
+  right: -50%;
+  transform: translate(-25%, 10%);
+}
+.first-coin-double {
+  position: absolute;
+  bottom: -30%;
+  right: -50%;
   transform: scale(0.5);
-  left: -10%;
-  bottom: 5%;
-}
-.second-coin {
-  position: absolute;
-  transform: scale(0.5);
-  left: 30%;
-  bottom: -10%;
-}
-.graph {
-  position: absolute;
-  transform: scaleY(-1);
-  bottom: -10%;
-  left: 10%;
 }
 </style>

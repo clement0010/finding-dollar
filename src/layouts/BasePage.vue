@@ -14,23 +14,42 @@
           <slot />
         </v-col>
       </v-row>
+      <v-row no-gutters class="btm" justify="space-between">
+        <v-col class="btm-left" cols="4">
+          <BottomLeft v-if="display" />
+        </v-col>
+        <v-col class="btm-right" cols="4">
+          <BottomRight v-if="display" />
+        </v-col>
+      </v-row>
     </v-container>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { computed, defineComponent } from '@vue/composition-api';
 
 import TopLeft from '@/layouts/TopLeft.vue';
 import TopRight from '@/layouts/TopRight.vue';
+import BottomLeft from '@/layouts/BottomLeft.vue';
+import BottomRight from '@/layouts/BottomRight.vue';
 
 export default defineComponent({
   name: 'BasePage',
-  components: { TopLeft, TopRight },
+  components: { TopLeft, TopRight, BottomLeft, BottomRight },
+  setup(_, { root }) {
+    return {
+      display: computed(() => {
+        if (root.$route.name !== 'Home') return false;
+        if (root.$vuetify.breakpoint.smAndDown) return false;
+        return true;
+      }),
+    };
+  },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .top {
   position: absolute;
   top: 0;
@@ -42,6 +61,12 @@ export default defineComponent({
   position: relative;
 }
 .top-right {
+  position: relative;
+}
+.btm-left {
+  position: relative;
+}
+.btm-right {
   position: relative;
 }
 .btm {
