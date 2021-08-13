@@ -9,7 +9,7 @@
         </v-app-bar-title>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col v-if="authenticated" cols="1" align="center">
+      <v-col v-if="authenticated" cols="1" md="auto" align="center">
         <router-link :to="{ name: 'Profile', params: { id } }">
           <v-btn text rounded class="secondary--text pa-0"> Profile </v-btn>
         </router-link>
