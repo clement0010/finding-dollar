@@ -67,32 +67,39 @@
             <!-- General Rules -->
             <v-card-text v-if="tab === 3">
               <ul class="pa-0">
-                <li>
+                <li class="pb-2">
                   Please ensure that you are using a <strong>laptop or PC</strong> for the whole
                   duration of the event for an optimal experience.
                 </li>
-                <li>Please prepare a pair of <strong>earphones</strong> for this event.</li>
-                <li>
+                <li class="py-2">
+                  Please prepare a pair of <strong>earphones</strong> for this event.
+                </li>
+                <li class="py-2">
                   We <strong>strongly encourage you to turn on the webcam</strong> for better
                   engagement. Do notify us beforehand if there are any external circumstances which
                   may prevent you from doing so, or if you do not have that function.
                 </li>
-                <li>
+                <li class="py-2">
                   Please keep your <strong>microphones muted</strong> when others are speaking. If
                   possible, position yourself in a quiet room, free of distractions.
                 </li>
-                <li>We strongly advise you to be <strong>punctual</strong> to the event.</li>
+                <li class="py-2">
+                  We strongly advise you to be <strong>punctual</strong> to the event.
+                </li>
 
-                <li>Recordings of the event are <strong>strictly prohibited</strong>.</li>
-                <li>
+                <li class="py-2">
+                  Recordings of the event are <strong>strictly prohibited</strong>.
+                </li>
+                <li class="py-2">
                   Please maintain <strong>professionalism</strong> and be
                   <strong>considerate</strong> to other attendees.
                 </li>
-                <li>Do <strong>utilise the Zoom Chat for Q&A</strong> whenever necessary.</li>
-                <li>
-                  Please display your full name as per registered when joining the Zoom call,
-                  <strong>with your educational institution in front of your name</strong>. (i.e.,
-                  NUS - Clement Tee, NTU - Chong Yu Ze)
+                <li class="py-2">
+                  Do <strong>utilise the Zoom Chat for Q&A</strong> whenever necessary.
+                </li>
+                <li class="pt-2">
+                  Please display your <strong>full name</strong> as per registered when joining the
+                  Zoom call.
                 </li>
               </ul>
             </v-card-text>

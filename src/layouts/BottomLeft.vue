@@ -1,9 +1,17 @@
 <template>
   <v-container fluid class="ma-0 pa-0">
-    <Graph class="first-graph" />
-    <DollarFull class="first-dollar" />
-    <Coin class="first-coin-single" />
-    <CoinDouble class="first-coin-double" />
+    <transition appear name="slide-fade">
+      <Graph v-if="display" class="first-graph" />
+    </transition>
+    <transition appear name="slide-fade">
+      <DollarFull v-if="display" class="first-dollar" />
+    </transition>
+    <transition appear name="slide-fade">
+      <Coin v-if="display" class="first-coin-single" />
+    </transition>
+    <transition appear name="slide-fade-1">
+      <CoinDouble v-if="display" class="first-coin-double" />
+    </transition>
   </v-container>
 </template>
 
@@ -22,6 +30,12 @@ export default defineComponent({
     Coin,
     CoinDouble,
     Graph,
+  },
+  props: {
+    display: {
+      type: Boolean,
+      required: true,
+    },
   },
 });
 </script>
@@ -50,5 +64,37 @@ export default defineComponent({
   bottom: -30%;
   right: -50%;
   transform: scale(0.5);
+}
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.7s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+.slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+.slide-fade-1-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-1-leave-active {
+  transition: all 0.7s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-1-enter
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: scale(0);
+  opacity: 0;
+}
+.slide-fade-1-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: scale(0);
+  opacity: 0;
 }
 </style>

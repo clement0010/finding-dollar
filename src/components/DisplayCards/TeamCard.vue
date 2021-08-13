@@ -4,7 +4,15 @@
       <v-col cols="12" md="11">
         <v-row no-gutters justify="space-around" class="accent2" style="min-height: 7vw">
           <v-col cols="2" style="position: relative" v-for="card in cards" :key="card.title">
-            <v-img :src="card.src" max-height="9rem" contain class="photo" />
+            <transition appear name="fade">
+              <v-img
+                :src="card.src"
+                max-height="9rem"
+                contain
+                class="photo"
+                transition="fade-transition"
+              />
+            </transition>
           </v-col>
         </v-row>
         <v-row no-gutters justify="space-around" class="mt-5">
@@ -15,7 +23,9 @@
             align="center"
             class="text-center font-weight-bold secondary--text"
           >
-            <p :class="{ 'text-caption': $vuetify.breakpoint.smAndDown }">{{ card.title }}</p>
+            <p v-motion-fade :class="{ 'text-caption': $vuetify.breakpoint.smAndDown }">
+              {{ card.title }}
+            </p>
           </v-col>
         </v-row>
         <v-row justify="space-around" no-gutters align="center">
@@ -26,22 +36,22 @@
             :key="card.title"
             class="text-center font-weight-bold secondary--text"
           >
-            <v-container class="pa-0 accent1" style="max-width: 35px; height: 5px" />
-            <v-btn text fab small :href="card.linkedIn" target="_blank">
-              <v-icon color="secondary"> mdi-linkedin </v-icon>
+            <v-container v-motion-fade class="pa-0 accent1" style="max-width: 35px; height: 5px" />
+            <v-btn text fab small :href="card.linkedIn" target="_blank" v-motion-fade>
+              <v-icon color="secondary" v-motion-fade> mdi-linkedin </v-icon>
             </v-btn>
           </v-col>
         </v-row>
       </v-col>
       <v-col cols="12" md="1" align="center" class="text-center">
         <v-btn text fab small @click="current++">
-          <v-icon v-if="$vuetify.breakpoint.smAndUp">mdi-chevron-up</v-icon>
+          <v-icon v-if="$vuetify.breakpoint.mdAndUp">mdi-chevron-up</v-icon>
           <v-icon v-else>mdi-chevron-left</v-icon>
         </v-btn>
 
-        <br v-if="$vuetify.breakpoint.smAndUp" />
+        <br v-if="$vuetify.breakpoint.mdAndUp" />
         <v-btn text fab small @click="current--">
-          <v-icon v-if="$vuetify.breakpoint.smAndUp">mdi-chevron-down</v-icon>
+          <v-icon v-if="$vuetify.breakpoint.mdAndUp">mdi-chevron-down</v-icon>
           <v-icon v-else>mdi-chevron-right</v-icon>
         </v-btn>
       </v-col>
@@ -123,5 +133,14 @@ export default defineComponent({
   position: absolute;
   right: 0;
   bottom: 0;
+}
+.fade-enter-active {
+  transition: all 1.2s ease;
+}
+.fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

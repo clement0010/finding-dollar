@@ -12,28 +12,35 @@
           <v-card-title class="justify-center font-weight-bold"
             >Welcome {{ teamProfile.name }}! &#128512;</v-card-title
           >
+          <transition name="fade">
+            <RoleDescription
+              v-if="!selectedCharacter"
+              @selectCharacter="selectCharacter"
+              :managementQuota="managementQuota"
+              :softwareQuota="softwareQuota"
+              :founderQuota="founderQuota"
+              :designerQuota="designerQuota"
+              :viewCharacter="viewCharacter"
+            />
+          </transition>
 
-          <RoleDescription
-            v-if="!selectedCharacter"
-            @selectCharacter="selectCharacter"
-            :managementQuota="managementQuota"
-            :softwareQuota="softwareQuota"
-            :founderQuota="founderQuota"
-            :designerQuota="designerQuota"
-            :viewCharacter="viewCharacter"
-          />
-          <ScheduleTable
-            v-if="selectedCharacter && !scheduled"
-            :role="teamProfile.character"
-            @selectSchedule="selectSchedule"
-          />
-          <RoleCard
-            v-if="selectedCharacter && scheduled"
-            :selectedCharacter="teamProfile.character"
-            :rolePlay="teamProfile.schedule"
-            :templateLink="teamProfile.templateLink"
-            :disable="!viewTemplate"
-          />
+          <transition name="fade">
+            <ScheduleTable
+              v-if="selectedCharacter && !scheduled"
+              :role="teamProfile.character"
+              @selectSchedule="selectSchedule"
+            />
+          </transition>
+
+          <transition name="fade">
+            <RoleCard
+              v-if="selectedCharacter && scheduled"
+              :selectedCharacter="teamProfile.character"
+              :rolePlay="teamProfile.schedule"
+              :templateLink="teamProfile.templateLink"
+              :disable="!viewTemplate"
+            />
+          </transition>
         </v-card>
       </v-col>
     </v-row>
@@ -109,5 +116,14 @@ export default defineComponent({
 .scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+.fade-enter-active {
+  transition: all 1.2s ease;
+}
+.fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

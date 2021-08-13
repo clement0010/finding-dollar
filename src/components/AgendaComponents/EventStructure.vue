@@ -31,11 +31,17 @@
                   :key="card.title"
                   class="text-center font-weight-bold secondary--text"
                 >
-                  <p>{{ card.title }}</p>
-                  <v-divider class="pt-1 mb-2 mx-auto accent1" style="max-width: 35px" />
-                  <v-btn text fab small :href="card.linkedIn" target="_blank">
-                    <v-icon color="secondary"> mdi-linkedin </v-icon>
-                  </v-btn>
+                  <transition appear name="fade">
+                    <p>{{ card.title }}</p>
+                  </transition>
+                  <transition appear name="fade">
+                    <v-divider class="pt-1 mb-2 mx-auto accent1" style="max-width: 35px" />
+                  </transition>
+                  <transition appear name="fade">
+                    <v-btn text fab small :href="card.linkedIn" target="_blank">
+                      <v-icon color="secondary"> mdi-linkedin </v-icon>
+                    </v-btn>
+                  </transition>
                 </v-col>
               </v-row>
             </v-col>
@@ -113,3 +119,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active {
+  transition: all 1.8s ease;
+}
+.fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
