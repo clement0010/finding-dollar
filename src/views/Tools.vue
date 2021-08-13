@@ -1,5 +1,9 @@
 <template>
-  <v-container fluid>
+  <v-container
+    fluid
+    style="position: absolute"
+    :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
+  >
     <v-row no-gutters justify="center">
       <v-col cols="12" md="8" align="center">
         <ToolsCard />
@@ -18,3 +22,12 @@ export default defineComponent({
   components: { ToolsCard },
 });
 </script>
+
+<style lang="scss" scoped>
+.mobile {
+  top: 5vh;
+}
+.web {
+  top: 15vh;
+}
+</style>

@@ -12,7 +12,7 @@ export const quota = ref<Quotas>([]);
 export const leaderboard = ref<Leaderboard>([]);
 
 // Authentication
-export const authenticated = ref(true);
+export const authenticated = ref(false);
 export const authLoading = ref(true);
 export const authError = ref(false);
 

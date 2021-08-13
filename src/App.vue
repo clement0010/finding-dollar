@@ -12,7 +12,9 @@
         <Snackbar />
       </v-container>
     </v-main>
-    <Footer v-if="!$vuetify.breakpoint.mdAndUp" />
+    <transition name="slide-fade-down">
+      <Footer v-if="!$vuetify.breakpoint.mdAndUp" />
+    </transition>
   </v-app>
 </template>
 
@@ -68,5 +70,19 @@ strong {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #f3f3ff;
+}
+
+/* Enter and leave animations can use different` */
+/* durations and timing functions.              */
+.slide-fade-down-enter-active {
+  transition: all 1.2s ease;
+}
+.slide-fade-down-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-down-enter, .slide-fade-down-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(60px);
+  opacity: 0;
 }
 </style>

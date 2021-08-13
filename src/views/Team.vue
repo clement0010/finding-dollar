@@ -6,8 +6,8 @@
     :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
   >
     <v-row no-gutters justify="center">
-      <v-col cols="12" align="center">
-        <h1 class="text-md-h3 text-sm-h6 text-h6 mb-10 secondary--text">
+      <v-col cols="7" align="center">
+        <h1 class="text-md-h3 text-sm-h4 text-h5 mb-10 secondary--text">
           Find out more about ICMS Singapore
         </h1>
       </v-col>

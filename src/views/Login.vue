@@ -1,7 +1,14 @@
 <template>
-  <v-container fluid class="ma-0 pa-0">
-    <v-row no-gutters>
-      <LoginCard justify="center" align="center" />
+  <v-container
+    fluid
+    style="position: absolute"
+    :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
+    }
+  >
+    <v-row no-gutters justify="center">
+      <v-col cols="12" md="8" align="center">
+        <LoginCard justify="center" align="center" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -18,3 +25,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.mobile {
+  top: 5vh;
+}
+.web {
+  top: 15vh;
+}
+</style>

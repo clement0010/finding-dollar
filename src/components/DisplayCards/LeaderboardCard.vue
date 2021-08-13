@@ -88,7 +88,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .photo {
   position: absolute;
   right: 0;

@@ -1,7 +1,11 @@
 <template>
   <v-container fluid class="ma-0 pa-0">
-    <DollarFull class="first-dollar" />
-    <CoinDouble class="first-coin-double" />
+    <transition appear name="slide-fade">
+      <DollarFull v-if="display" class="first-dollar" />
+    </transition>
+    <transition appear name="slide-fade-1">
+      <CoinDouble v-if="display" class="first-coin-double" />
+    </transition>
   </v-container>
 </template>
 
@@ -16,6 +20,12 @@ export default defineComponent({
   components: {
     DollarFull,
     CoinDouble,
+  },
+  props: {
+    display: {
+      type: Boolean,
+      required: true,
+    },
   },
 });
 </script>
@@ -32,5 +42,32 @@ export default defineComponent({
   bottom: 0rem;
   right: -7rem;
   transform: scale(0.5);
+}
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(40px);
+  opacity: 0;
+}
+.slide-fade-1-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-1-leave-active {
+  transition: all 0.7s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-1-enter
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: scale(0);
+  opacity: 0;
+}
+.slide-fade-1-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: scale(0);
+  opacity: 0;
 }
 </style>

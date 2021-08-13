@@ -290,7 +290,7 @@ const founder: Character = {
       category: 'Expense',
     },
   ],
-  scenario: `<strong>Open conversation with parents</strong> <br /><br /Nigel wants to have a
+  scenario: `<strong>Open conversation with parents</strong> <br /><br /> Nigel wants to have a
     heart to heart talk with his parents. He wants to make sure that he understands his parents'
     preference on when to retire. He wishes to understand his parents’ retirement plan and their
     savings to finance that. Taking into account his financial capabilities, he wants to review to

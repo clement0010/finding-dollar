@@ -2,7 +2,7 @@
   <v-container fluid class="pa-0 ma-0">
     <v-card
       flat
-      :height="$vuetify.breakpoint.smAndUp ? '75vh' : '50vh'"
+      :height="$vuetify.breakpoint.mdAndUp ? '70vh' : '50vh'"
       class="text-justify rounded-lg scroll pa-1"
       color="transparent"
     >

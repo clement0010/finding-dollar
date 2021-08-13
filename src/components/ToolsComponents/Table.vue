@@ -8,7 +8,7 @@
         class="elevation-3"
         hide-default-footer
       >
-        <template #[`item.actions`]="{ item }">
+        <template #[`item.actions`]="{ item }" v-if="$vuetify.breakpoint.smAndDown">
           <v-btn
             fab
             x-small
@@ -24,7 +24,35 @@
             <v-icon color="secondary"> mdi-delete </v-icon>
           </v-btn>
         </template>
-        <template #[`item.value`]="{ item }"> {{ formatThousandSeparator(item.value) }} </template>
+        <template #[`item.value`]="{ item }" v-if="$vuetify.breakpoint.smAndDown">
+          {{ formatThousandSeparator(item.value) }}
+        </template>
+        <template v-if="$vuetify.breakpoint.smAndUp" #body="{ items }">
+          <tbody is="transition-group" name="list">
+            <tr v-for="item in items" :key="item.name" class="item-row text-center">
+              <td>{{ item.category }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ formatThousandSeparator(item.value) }}</td>
+              <td>
+                <v-btn
+                  fab
+                  x-small
+                  color="primary"
+                  class="mr-4"
+                  @click="editItem(item)"
+                  v-on="on"
+                  v-bind="attrs"
+                >
+                  <v-icon color="secondary"> mdi-pencil </v-icon>
+                </v-btn>
+                <v-btn fab x-small color="primary" @click="$emit('delete', item.id)">
+                  <v-icon color="secondary"> mdi-delete </v-icon>
+                </v-btn>
+              </td>
+            </tr>
+          </tbody>
+        </template>
+
         <template v-slot:no-data> Input some items </template>
       </v-data-table>
 
@@ -157,3 +185,21 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.8s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.list-move {
+  transition: transform 0.6s;
+}
+.item-row {
+  display: table-row;
+}
+</style>

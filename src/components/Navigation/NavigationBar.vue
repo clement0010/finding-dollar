@@ -9,73 +9,89 @@
         </v-app-bar-title>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col v-if="authenticated" cols="1" md="auto" align="center">
-        <router-link :to="{ name: 'Profile', params: { id } }">
-          <v-btn text rounded class="secondary--text pa-0"> Profile </v-btn>
-        </router-link>
-      </v-col>
-      <v-col cols="1" md="auto" align="center">
-        <router-link to="/agenda">
-          <v-btn text rounded class="secondary--text pa-0"> Agenda </v-btn>
-        </router-link>
-      </v-col>
-      <v-col cols="1" md="auto" align="center">
-        <router-link to="/challenge">
-          <v-btn text rounded class="secondary--text pa-0"> Challenge </v-btn>
-        </router-link>
-      </v-col>
-      <v-col cols="1" md="auto" v-if="authenticated" align="center">
-        <router-link to="/leaderboard">
-          <v-btn text rounded class="secondary--text pa-0"> Leaderboard </v-btn>
-        </router-link>
-      </v-col>
-      <v-col cols="1" md="auto" align="center">
-        <router-link to="/team">
-          <v-btn text rounded class="secondary--text pa-0"> Team </v-btn>
-        </router-link>
-      </v-col>
-      <v-col cols="1" md="auto" align="center">
-        <router-link to="/tools">
-          <v-btn text rounded class="secondary--text pa-0"> Tools </v-btn>
-        </router-link>
-      </v-col>
-      <v-col cols="1" md="auto" align="center">
-        <router-link to="/login" v-if="!authenticated">
-          <v-btn text rounded class="secondary--text"> Login </v-btn>
-        </router-link>
-        <v-btn text rounded class="secondary--text" v-if="authenticated" @click="logout">
-          Sign Out
-        </v-btn>
-      </v-col>
-      <v-col cols="2" v-if="$vuetify.breakpoint.lgAndUp" align="center" class="pa-0">
-        <v-row justify="center" align="center">
-          <v-col cols="2">
-            <v-btn text fab small href="https://www.facebook.com/icmscholars" target="_blank">
-              <v-icon color="secondary"> mdi-facebook </v-icon>
-            </v-btn>
-          </v-col>
-          <v-col cols="2">
-            <v-btn text fab small href="https://www.instagram.com/icmscholars/" target="_blank">
-              <v-icon color="secondary"> mdi-instagram </v-icon>
-            </v-btn>
-          </v-col>
-          <v-col cols="2">
-            <v-btn text fab small href="https://www.linkedin.com/company/3155872" target="_blank">
-              <v-icon color="secondary"> mdi-linkedin </v-icon>
-            </v-btn>
-          </v-col>
-          <v-col cols="2">
-            <v-btn text fab small href="mailto:enquiries@icmscholars.org">
-              <v-icon color="secondary"> mdi-email </v-icon>
-            </v-btn>
-          </v-col>
-          <v-col cols="2">
-            <v-btn text fab small href="https://www.icmscholars.org/" target="_blank">
-              <v-icon color="secondary"> mdi-web </v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-col>
+      <transition name="slide-fade-right">
+        <v-col v-if="authenticated" cols="1" md="auto" align="center">
+          <router-link :to="{ name: 'Profile', params: { id } }">
+            <v-btn text rounded class="secondary--text pa-0"> Profile </v-btn>
+          </router-link>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="1" md="auto" align="center">
+          <router-link to="/agenda">
+            <v-btn text rounded class="secondary--text pa-0"> Agenda </v-btn>
+          </router-link>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="1" md="auto" align="center">
+          <router-link to="/challenge">
+            <v-btn text rounded class="secondary--text pa-0"> Challenge </v-btn>
+          </router-link>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="1" md="auto" v-if="authenticated" align="center">
+          <router-link to="/leaderboard">
+            <v-btn text rounded class="secondary--text pa-0"> Leaderboard </v-btn>
+          </router-link>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="1" md="auto" align="center">
+          <router-link to="/team">
+            <v-btn text rounded class="secondary--text pa-0"> Team </v-btn>
+          </router-link>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="1" md="auto" align="center">
+          <router-link to="/tools">
+            <v-btn text rounded class="secondary--text pa-0"> Tools </v-btn>
+          </router-link>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="1" md="auto" align="center">
+          <router-link to="/login" v-if="!authenticated">
+            <v-btn text rounded class="secondary--text"> Login </v-btn>
+          </router-link>
+          <v-btn text rounded class="secondary--text" v-if="authenticated" @click="logout">
+            Sign Out
+          </v-btn>
+        </v-col>
+      </transition>
+      <transition appear name="slide-fade-right">
+        <v-col cols="2" v-if="$vuetify.breakpoint.lgAndUp" align="center" class="pa-0">
+          <v-row justify="center" align="center">
+            <v-col cols="2">
+              <v-btn text fab small href="https://www.facebook.com/icmscholars" target="_blank">
+                <v-icon color="secondary"> mdi-facebook </v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="2">
+              <v-btn text fab small href="https://www.instagram.com/icmscholars/" target="_blank">
+                <v-icon color="secondary"> mdi-instagram </v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="2">
+              <v-btn text fab small href="https://www.linkedin.com/company/3155872" target="_blank">
+                <v-icon color="secondary"> mdi-linkedin </v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="2">
+              <v-btn text fab small href="mailto:enquiries@icmscholars.org">
+                <v-icon color="secondary"> mdi-email </v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="2">
+              <v-btn text fab small href="https://www.icmscholars.org/" target="_blank">
+                <v-icon color="secondary"> mdi-web </v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-col>
+      </transition>
     </v-row>
   </v-app-bar>
 </template>
@@ -102,3 +118,19 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+/* Enter and leave animations can use different` */
+/* durations and timing functions.              */
+.slide-fade-right-enter-active {
+  transition: all 1.2s ease;
+}
+.slide-fade-right-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-right-enter, .slide-fade-right-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(60px);
+  opacity: 0;
+}
+</style>

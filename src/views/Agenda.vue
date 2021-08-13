@@ -6,7 +6,7 @@
     }
   >
     <v-row no-gutters justify="center">
-      <v-col cols="10" md="8">
+      <v-col cols="10" md="8" align="center">
         <AgendaCard />
       </v-col>
     </v-row>
