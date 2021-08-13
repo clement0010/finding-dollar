@@ -3,10 +3,11 @@
     fluid
     style="position: absolute"
     :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
+    }
   >
     <v-row no-gutters justify="center">
-      <v-col cols="10" md="8">
-        <ChallengeCard />
+      <v-col cols="12">
+        <AdminCard />
       </v-col>
     </v-row>
   </v-container>
@@ -15,11 +16,13 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
-import ChallengeCard from '@/components/DisplayCards/ChallengeCard.vue';
+import AdminCard from '@/components/DisplayCards/AdminCard.vue';
 
 export default defineComponent({
-  name: 'Challenge',
-  components: { ChallengeCard },
+  name: 'Admin',
+  components: {
+    AdminCard,
+  },
 });
 </script>
 

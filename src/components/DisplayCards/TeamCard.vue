@@ -1,35 +1,48 @@
 <template>
   <v-container fluid class="pa-0 mt-10">
     <v-row no-gutters justify="space-between">
-      <v-col cols="11">
+      <v-col cols="12" md="11">
         <v-row no-gutters justify="space-around" class="accent2" style="min-height: 7vw">
           <v-col cols="2" style="position: relative" v-for="card in cards" :key="card.title">
             <v-img :src="card.src" max-height="9rem" contain class="photo" />
           </v-col>
         </v-row>
-        <v-row justify="space-around">
+        <v-row no-gutters justify="space-around" class="mt-5">
           <v-col
             cols="2"
             v-for="card in cards"
             :key="card.title"
+            align="center"
             class="text-center font-weight-bold secondary--text"
           >
-            <p>{{ card.title }}</p>
-            <v-divider class="pt-1 mb-2 mx-auto accent1" style="max-width: 35px" />
+            <p :class="{ 'text-caption': $vuetify.breakpoint.smAndDown }">{{ card.title }}</p>
+          </v-col>
+        </v-row>
+        <v-row justify="space-around" no-gutters align="center">
+          <v-col
+            cols="2"
+            align="center"
+            v-for="card in cards"
+            :key="card.title"
+            class="text-center font-weight-bold secondary--text"
+          >
+            <v-container class="pa-0 accent1" style="max-width: 35px; height: 5px" />
             <v-btn text fab small :href="card.linkedIn" target="_blank">
               <v-icon color="secondary"> mdi-linkedin </v-icon>
             </v-btn>
           </v-col>
         </v-row>
       </v-col>
-      <v-col align-self="center" class="text-center">
+      <v-col cols="12" md="1" align="center" class="text-center">
         <v-btn text fab small @click="current++">
-          <v-icon>mdi-chevron-up</v-icon>
+          <v-icon v-if="$vuetify.breakpoint.smAndUp">mdi-chevron-up</v-icon>
+          <v-icon v-else>mdi-chevron-left</v-icon>
         </v-btn>
 
-        <br />
+        <br v-if="$vuetify.breakpoint.smAndUp" />
         <v-btn text fab small @click="current--">
-          <v-icon>mdi-chevron-down</v-icon>
+          <v-icon v-if="$vuetify.breakpoint.smAndUp">mdi-chevron-down</v-icon>
+          <v-icon v-else>mdi-chevron-right</v-icon>
         </v-btn>
       </v-col>
     </v-row>
@@ -50,7 +63,7 @@ export default defineComponent({
       },
       {
         title: 'Clement Tee',
-        src: 'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Clement.png?alt=media&token=24b7561e-65dc-4ee5-9ddf-14d5e4972cac',
+        src: 'https://firebasestorage.googleapis.com/v0/b/finding-dollar-dev.appspot.com/o/Clement.png?alt=media&token=1ec65069-90ff-43d3-8a6a-b6cca9fc6b28',
         linkedIn: 'https://www.linkedin.com/in/clement0010/',
       },
       {

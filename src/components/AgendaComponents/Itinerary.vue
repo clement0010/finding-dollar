@@ -3,14 +3,14 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-left">Time</th>
-          <th class="text-left">Subject</th>
+          <th class="text-center">Time</th>
+          <th class="text-center">Subject</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in schedule" :key="item.name">
-          <td>{{ item.time }}</td>
-          <td>{{ item.subject }}</td>
+          <td class="text-center">{{ item.time }}</td>
+          <td class="text-center">{{ item.subject }}</td>
         </tr>
       </tbody>
     </template>

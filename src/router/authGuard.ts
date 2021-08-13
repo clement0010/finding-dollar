@@ -1,7 +1,7 @@
 import { NavigationGuardNext, Route } from 'vue-router';
 import { watch } from '@vue/composition-api';
 
-import { authenticated, authLoading } from '@/composable/store';
+import { authenticated, authLoading, uid } from '@/composable/store';
 import useSnackbar from '@/composable/snackbarComposition';
 
 const authGuard = (to: Route, from: Route, next: NavigationGuardNext): void => {
@@ -16,6 +16,13 @@ const authGuard = (to: Route, from: Route, next: NavigationGuardNext): void => {
         return next({
           path: '/login',
         });
+      }
+      if (to.meta?.admin) {
+        if (uid.value === 'admin') return next();
+        next({
+          path: '/',
+        });
+        return;
       }
     }
 

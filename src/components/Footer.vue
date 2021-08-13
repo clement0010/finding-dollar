@@ -4,7 +4,7 @@
       <v-card-text class="secondary--text">
         <strong>ICMS SINGAPORE </strong> &copy; {{ new Date().getFullYear() }}
       </v-card-text>
-      <v-card-text>
+      <v-card-text class="pa-0">
         <v-row justify="center" no-gutters>
           <v-col cols="10" md="6">
             <v-btn text fab small href="https://www.instagram.com/icmscholars/" target="_blank">

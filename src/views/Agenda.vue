@@ -1,7 +1,12 @@
 <template>
-  <v-container fluid style="position: absolute; top: 10vh">
+  <v-container
+    fluid
+    style="position: absolute"
+    :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
+    }
+  >
     <v-row no-gutters justify="center">
-      <v-col cols="8">
+      <v-col cols="10" md="8">
         <AgendaCard />
       </v-col>
     </v-row>
@@ -20,3 +25,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.mobile {
+  top: 5vh;
+}
+.web {
+  top: 10vh;
+}
+</style>

@@ -23,7 +23,7 @@
           <v-card flat height="50vh" class="pa-5 text-justify scroll">
             <v-form v-model="valid">
               <v-row justify="center" align="center" v-if="tab === 0">
-                <v-col cols="3">
+                <v-col cols="6" md="3">
                   <v-select
                     v-model="tableValue.select"
                     :items="category"
@@ -34,8 +34,7 @@
                     :rules="[requireInputRule]"
                   ></v-select>
                 </v-col>
-
-                <v-col cols="3">
+                <v-col cols="6" md="3">
                   <v-text-field
                     v-model="tableValue.name"
                     label="Item"
@@ -45,8 +44,7 @@
                     :rules="[requireInputRule]"
                   ></v-text-field>
                 </v-col>
-
-                <v-col cols="3">
+                <v-col cols="8" md="3">
                   <v-text-field
                     v-model="tableValue.value"
                     label="Value"
@@ -58,7 +56,7 @@
                     @keypress.enter="submit"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="2" class="text-center mb-5">
+                <v-col cols="4" md="3" class="text-center mb-5">
                   <v-btn
                     class="success rounded-md"
                     :disabled="!valid"

@@ -66,7 +66,7 @@
             <Itinerary v-if="tab === 2" />
             <!-- General Rules -->
             <v-card-text v-if="tab === 3">
-              <ul>
+              <ul class="pa-0">
                 <li>
                   Please ensure that you are using a <strong>laptop or PC</strong> for the whole
                   duration of the event for an optimal experience.

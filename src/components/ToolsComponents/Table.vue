@@ -24,8 +24,14 @@
             <v-icon color="secondary"> mdi-delete </v-icon>
           </v-btn>
         </template>
-        <template v-slot:no-data> Input some value </template>
+        <template #[`item.value`]="{ item }"> {{ formatThousandSeparator(item.value) }} </template>
+        <template v-slot:no-data> Input some items </template>
       </v-data-table>
+
+      <v-row no-gutters class="mt-5">
+        <v-col> Total: </v-col>
+        <v-col align="right"> {{ formatThousandSeparator(total) }} </v-col>
+      </v-row>
     </template>
     <v-card>
       <v-card-title>
@@ -79,6 +85,7 @@
 </template>
 
 <script lang="ts">
+import { formatThousandSeparator } from '@/common';
 import { FinanceCategory, FinanceTableData } from '@/common/firestore/type';
 import { computed, defineComponent, ref } from '@vue/composition-api';
 
@@ -145,6 +152,7 @@ export default defineComponent({
 
       category,
       total,
+      formatThousandSeparator,
     };
   },
 });

@@ -33,7 +33,7 @@
               thing or two from this, to better manage your own finances in the future.
             </v-card-text>
             <v-card-text v-if="tab === 1">
-              <ol>
+              <ol class="pa-0">
                 <li>
                   You will receive a character brief prior to the challenge which will include the
                   following key information about the character:
@@ -102,7 +102,7 @@
               </ol>
             </v-card-text>
             <v-card-text v-if="tab === 2">
-              <ol>
+              <ol class="pa-0">
                 <li>
                   <strong>Achieving Financial Goals</strong>
                   <br />

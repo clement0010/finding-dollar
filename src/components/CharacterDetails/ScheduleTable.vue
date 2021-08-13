@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card class="rounded-xl elevation-3">
-      <v-card-title class="justify-center font-weight-bold"
+      <v-card-title class="justify-center font-weight-bold text-justify"
         >Please select your schedule</v-card-title
       >
       <v-card flat class="pa-5">

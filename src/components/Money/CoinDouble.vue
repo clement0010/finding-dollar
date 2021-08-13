@@ -9,32 +9,12 @@ export default defineComponent({
   name: 'MoneyCoinDouble',
   setup(_, { root }) {
     const width = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 200;
-        case 'sm':
-          return 200;
-        case 'md':
-          return 250;
-        case 'lg':
-          return 250;
-        case 'xl':
-          return 300;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 300;
+      return 250;
     });
     const height = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 200;
-        case 'sm':
-          return 200;
-        case 'md':
-          return 250;
-        case 'lg':
-          return 250;
-        case 'xl':
-          return 300;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 300;
+      return 250;
     });
     return {
       width,

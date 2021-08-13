@@ -29,7 +29,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .first-dollar {
   position: absolute;
   transform: rotate(30deg);
@@ -44,9 +44,9 @@ export default defineComponent({
 }
 .second-coin-double {
   position: absolute;
-  right: 20%;
-  bottom: -10%;
-  transform: translate(-5%, 5%) scale(0.5);
+  right: 10%;
+  bottom: 10%;
+  transform: translate(-5vw, 10vw) scale(0.5);
 }
 .first-coin-single {
   position: absolute;

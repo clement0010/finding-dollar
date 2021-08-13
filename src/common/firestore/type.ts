@@ -7,6 +7,7 @@ export interface Team {
   character: CharacterType;
   schedule: string;
   selectCharacter: boolean;
+  breakoutRoom: number;
 }
 
 export type Teams = Team[];
@@ -60,6 +61,7 @@ export interface SchedulePayload {
 export interface GlobalState {
   viewCharacter: boolean;
   viewTemplate: boolean;
+  submissionTime: string;
 }
 
 export type FinanceCategory = 'Needs' | 'Wants' | 'Savings';

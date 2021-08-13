@@ -9,33 +9,14 @@ export default defineComponent({
   name: 'MoneyDollarFolded',
   setup(_, { root }) {
     const width = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 200;
-        case 'sm':
-          return 300;
-        case 'md':
-          return 400;
-        case 'lg':
-          return 450;
-        case 'xl':
-          return 450;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 400;
+      return 300;
     });
     const height = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 200;
-        case 'sm':
-          return 300;
-        case 'md':
-          return 400;
-        case 'lg':
-          return 450;
-        case 'xl':
-          return 450;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 400;
+      return 300;
     });
+
     return {
       width,
       height,

@@ -1,8 +1,13 @@
 <template>
   <v-card flat color="transparent">
     <v-card-title
-      class="text-center secondary--text font-weight-bold justify-center"
-      :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-3']"
+      class="
+        text-center
+        secondary--text
+        font-weight-bold
+        justify-center
+        text-sm-h2 text-md-h1 text-h4
+      "
     >
       ICM$ SG:
       <br />

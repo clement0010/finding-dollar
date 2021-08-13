@@ -1,15 +1,18 @@
 <template>
-  <v-container fluid class="ma-0 pa-0" style="position: absolute; top: 10vh">
+  <v-container
+    fluid
+    class="ma-0 pa-0"
+    style="position: absolute"
+    :class="{ mobile: !$vuetify.breakpoint.smAndUp, web: $vuetify.breakpoint.smAndUp }"
+  >
     <Spinner v-if="loading || selectLoad" />
     <v-row no-gutters justify="center">
-      <v-col cols="8">
+      <v-col cols="10" md="8">
         <v-card flat color="transparent" class="rounded-xl" v-if="teamProfile">
           <v-card-title class="justify-center font-weight-bold"
             >Welcome {{ teamProfile.name }}! &#128512;</v-card-title
           >
-          <v-card-title v-if="!selectedCharacter" class="justify-center font-weight-bold"
-            >Please select a Character.</v-card-title
-          >
+
           <RoleDescription
             v-if="!selectedCharacter"
             @selectCharacter="selectCharacter"
@@ -95,3 +98,16 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.mobile {
+  top: 2vh;
+}
+.web {
+  top: 8vh;
+}
+.scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+</style>

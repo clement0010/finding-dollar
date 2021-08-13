@@ -24,16 +24,27 @@
       <v-tabs-items v-model="tab" v-if="character">
         <v-tab-item v-for="item in items" :key="item.tab">
           <v-card flat height="50vh" class="pa-5 text-justify scroll">
-            <v-card-title v-if="tab === 0" class="secondary--text font-weight-bold">
-              <v-avatar size="56">
-                <img alt="user" :src="character.photoUrl" contain />
-              </v-avatar>
-              <p class="ml-3 mt-5">{{ character.name }}</p>
-              <v-spacer />
-              <v-btn color="accent1" :href="templateLink" target="_blank" :disabled="disable">
-                Get Slide Template
-              </v-btn>
-            </v-card-title>
+            <v-row no-gutters justify="space-between" align="center" v-if="tab === 0">
+              <v-col sm="2" cols="4">
+                <v-img
+                  alt="user"
+                  :src="character.photoUrl"
+                  contain
+                  max-width="6rem"
+                  max-height="6rem"
+                />
+              </v-col>
+              <v-col sm="5" cols="12" class="pa-0">
+                <v-card-title v-if="tab === 0" class="secondary--text font-weight-bold">
+                  {{ character.name }}
+                </v-card-title>
+              </v-col>
+              <v-col sm="4" cols="12" :align="$vuetify.breakpoint.smAndUp ? 'right' : 'left'">
+                <v-btn color="accent1" :href="templateLink" target="_blank" :disabled="disable">
+                  Get Slide Template
+                </v-btn>
+              </v-col>
+            </v-row>
             <v-card-text v-if="tab === 0" v-html="character.biography"></v-card-text>
             <v-card-text v-if="tab === 2" v-html="character.scenario"></v-card-text>
             <DataTable v-if="tab === 1" :data="character.breakdown" />
@@ -42,8 +53,10 @@
                 >Roleplay Schedule: {{ parseTimestamp(rolePlay, 'h:mm a') }}</v-card-text
               >
               <FlipCountdown :deadline="rolePlayTime" :showDays="false" />
-              <v-card-text class="text-center">Submission Deadline: 1:50 pm</v-card-text>
-              <FlipCountdown deadline="2021-08-14 13:50" :showDays="false" />
+              <v-card-text class="text-center"
+                >Submission Deadline: {{ parseTimestamp(submissionTime, 'h:mm a') }}</v-card-text
+              >
+              <FlipCountdown :deadline="submission" :showDays="false" />
             </v-container>
           </v-card>
         </v-tab-item>
@@ -56,6 +69,7 @@
 import { computed, defineComponent, reactive, ref } from '@vue/composition-api';
 
 import useCharacter from '@/composable/characterComposable';
+import { submissionTime } from '@/composable/store';
 import { parseTimestamp } from '@/common/';
 
 import DataTable from '@/components/CharacterDetails/DataTable.vue';
@@ -104,12 +118,15 @@ export default defineComponent({
     ]);
 
     const rolePlayTime = computed(() => parseTimestamp(props.rolePlay, 'YYYY-MM-DD HH:mm:ss'));
+    const submission = computed(() => parseTimestamp(submissionTime.value, 'YYYY-MM-DD HH:mm:ss'));
     return {
       tab,
       items,
       character,
       loading,
       rolePlayTime,
+      submission,
+      submissionTime: computed(() => submissionTime.value),
       parseTimestamp,
     };
   },

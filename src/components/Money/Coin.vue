@@ -9,32 +9,12 @@ export default defineComponent({
   name: 'MoneyCoinSingle',
   setup(_, { root }) {
     const width = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 100;
-        case 'sm':
-          return 100;
-        case 'md':
-          return 100;
-        case 'lg':
-          return 100;
-        case 'xl':
-          return 100;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 100;
+      return 100;
     });
     const height = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 100;
-        case 'sm':
-          return 100;
-        case 'md':
-          return 100;
-        case 'lg':
-          return 100;
-        case 'xl':
-          return 100;
-      }
+      if (root.$vuetify.breakpoint.mdAndUp) return 100;
+      return 100;
     });
     return {
       width,

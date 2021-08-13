@@ -9,32 +9,14 @@ export default defineComponent({
   name: 'Graph',
   setup(_, { root }) {
     const width = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 300;
-        case 'sm':
-          return 300;
-        case 'md':
-          return 500;
-        case 'lg':
-          return 500;
-        case 'xl':
-          return 500;
-      }
+      if (root.$vuetify.breakpoint.lgAndUp) return 600;
+      if (root.$vuetify.breakpoint.mdAndUp) return 500;
+      return 300;
     });
     const height = computed(() => {
-      switch (root.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 300;
-        case 'sm':
-          return 300;
-        case 'md':
-          return 500;
-        case 'lg':
-          return 500;
-        case 'xl':
-          return 500;
-      }
+      if (root.$vuetify.breakpoint.lgAndUp) return 600;
+      if (root.$vuetify.breakpoint.mdAndUp) return 500;
+      return 300;
     });
     return {
       width,
