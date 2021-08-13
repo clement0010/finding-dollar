@@ -50,12 +50,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/challenge',
     name: 'Challenge',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Challenge.vue'),
+    component: () => import(/* webpackChunkName: "challenge" */ '../views/Challenge.vue'),
   },
   {
     path: '/tools',
     name: 'Tools',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Tools.vue'),
+    component: () => import(/* webpackChunkName: "tools" */ '../views/Tools.vue'),
   },
   {
     path: '*',

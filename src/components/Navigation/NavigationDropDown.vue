@@ -30,7 +30,7 @@
       <div>
         <v-list nav color="primary">
           <v-list-item-group v-if="authenticated" :value="selected" class="pt-15">
-            <router-link v-if="authenticated" :to="{ name: 'Profile', params: { id: id } }">
+            <router-link :to="{ name: 'Profile', params: { id: id } }">
               <v-list-item>
                 <v-list-item-icon>
                   <v-icon color="secondary">mdi-account-outline</v-icon>
@@ -91,6 +91,15 @@
                   <v-icon color="secondary">mdi-shopping</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content> Agenda </v-list-item-content>
+              </v-list-item>
+            </router-link>
+
+            <router-link to="/challenge">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="secondary">mdi-newspaper-variant-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content> Challenge </v-list-item-content>
               </v-list-item>
             </router-link>
 
@@ -160,10 +169,14 @@ export default defineComponent({
           return 0;
         case 'Agenda':
           return authenticated.value ? 1 : 0;
-        case 'Leaderboard':
+        case 'Challenge':
           return authenticated.value ? 2 : 1;
+        case 'Leaderboard':
+          return authenticated.value ? 3 : -1;
         case 'Team':
-          return authenticated.value ? 3 : 2;
+          return authenticated.value ? 4 : 2;
+        case 'Tools':
+          return authenticated.value ? 5 : 3;
         default:
           return undefined;
       }
