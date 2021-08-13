@@ -8,18 +8,18 @@
         <TopRight />
       </v-col>
     </v-row>
+    <v-row no-gutters class="btm" justify="space-between">
+      <v-col class="btm-left" cols="4">
+        <BottomLeft v-if="display" />
+      </v-col>
+      <v-col class="btm-right" cols="4">
+        <BottomRight v-if="display" />
+      </v-col>
+    </v-row>
     <v-container fluid fill-height class="ma-0 pa-0">
       <v-row no-gutters align="center" justify="center">
         <v-col>
           <slot />
-        </v-col>
-      </v-row>
-      <v-row no-gutters class="btm" justify="space-between">
-        <v-col class="btm-left" cols="4">
-          <BottomLeft v-if="display" />
-        </v-col>
-        <v-col class="btm-right" cols="4">
-          <BottomRight v-if="display" />
         </v-col>
       </v-row>
     </v-container>
