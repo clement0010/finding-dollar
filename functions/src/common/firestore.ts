@@ -3,7 +3,7 @@ import * as short from 'short-uuid';
 import { sendSlackMessage } from '../slack';
 import { admin, db } from './client';
 import { log } from './config';
-import { Characters, Global, Leaderboard, Quotas, Roles, Team, Teams } from './types';
+import { Admin, Characters, Global, Leaderboard, Quotas, Roles, Teams } from './types';
 
 export const populateTeamDatabase = async (teams: Teams): Promise<void> => {
   try {
@@ -39,7 +39,7 @@ export const populateTeamDatabase = async (teams: Teams): Promise<void> => {
   }
 };
 
-export const populateAdminDatabase = async (adminUser: Team): Promise<void> => {
+export const populateAdminDatabase = async (adminUser: Admin): Promise<void> => {
   try {
     log('info', 'Save admin details to db', { adminUser });
     const { uid, email, name } = adminUser;

@@ -5,10 +5,17 @@ export type LogType = 'info' | 'error' | 'warn';
 
 export type Roles = 'designer' | 'founder' | 'software' | 'management' | 'NA';
 
+export interface Admin {
+  uid: string;
+  email: string;
+  name: string;
+}
+
 export interface Team {
   uid: string;
   email: string;
   name: string;
+  templateLink: string;
 }
 
 export type Teams = Team[];
