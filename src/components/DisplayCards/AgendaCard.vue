@@ -29,7 +29,7 @@
               Dear participant, <br />
               <br />
 
-              Greetings! Welcome to ICMS $G: Finding Dollar, organised by the International Council
+              Greetings! Welcome to ICM$ SG: Finding Dollar, organised by the International Council
               of Malaysian Scholars and Associates (ICMS). To assist you in your preparation for our
               upcoming event, we have prepared an information pack for your reference.
               <br />
