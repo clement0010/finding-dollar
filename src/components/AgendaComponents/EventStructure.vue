@@ -77,12 +77,12 @@ export default defineComponent({
           </ul> `,
       },
       {
-        event: 'Mystery Challenge',
+        event: 'Challenge',
         content: `This challenge will be a hands-on experience for participants to apply the
         financial literacy knowledge learnt from the previous workshop. You will discuss in a group
         to strategise the investment and saving plans for the scenarios given. You will also need to
         address the financial problem given. At the end of the challenge, your team will present the
-        ideas on the slide deck and justify the rationale. `,
+        ideas on the slide deck and justify the rationale. See the Challenge page for more information.`,
       },
     ];
 
