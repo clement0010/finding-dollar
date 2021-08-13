@@ -11,6 +11,7 @@
     <v-row no-gutters class="btm" justify="space-between">
       <v-col class="btm-left" cols="4">
         <BottomLeft v-if="display" />
+        <Bottom v-if="displayBtm" />
       </v-col>
       <v-col class="btm-right" cols="4">
         <BottomRight v-if="display" />
@@ -33,16 +34,21 @@ import TopLeft from '@/layouts/TopLeft.vue';
 import TopRight from '@/layouts/TopRight.vue';
 import BottomLeft from '@/layouts/BottomLeft.vue';
 import BottomRight from '@/layouts/BottomRight.vue';
+import Bottom from '@/layouts/Bottom.vue';
 
 export default defineComponent({
   name: 'BasePage',
-  components: { TopLeft, TopRight, BottomLeft, BottomRight },
+  components: { TopLeft, TopRight, BottomLeft, BottomRight, Bottom },
   setup(_, { root }) {
     return {
       display: computed(() => {
         if (root.$route.name !== 'Home') return false;
         if (root.$vuetify.breakpoint.smAndDown) return false;
         return true;
+      }),
+      displayBtm: computed(() => {
+        if (root.$vuetify.breakpoint.smAndDown && root.$route.name === 'Home') return true;
+        return false;
       }),
     };
   },

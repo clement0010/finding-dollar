@@ -10,11 +10,11 @@ export default defineComponent({
   setup(_, { root }) {
     const width = computed(() => {
       if (root.$vuetify.breakpoint.mdAndUp) return 300;
-      return 200;
+      return 250;
     });
     const height = computed(() => {
       if (root.$vuetify.breakpoint.mdAndUp) return 300;
-      return 200;
+      return 250;
     });
     return {
       width,

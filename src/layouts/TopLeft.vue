@@ -1,10 +1,16 @@
 <template>
   <v-container fluid class="ma-0 pa-0">
-    <Graph class="first-graph" />
-    <DollarFolded class="first-dollar" />
-    <CoinDouble class="first-coin-double" />
-    <CoinDouble class="second-coin-double" />
-    <Coin class="first-coin-single" />
+    <Graph v-if="$vuetify.breakpoint.mdAndUp" class="first-graph" />
+
+    <DollarFolded v-if="$vuetify.breakpoint.smAndUp" class="first-dollar" />
+    <DollarFolded v-if="$vuetify.breakpoint.xs" class="second-dollar" />
+
+    <CoinDouble v-if="$vuetify.breakpoint.smAndUp" class="first-coin-double" />
+    <CoinDouble v-if="$vuetify.breakpoint.xs" class="first-second-coin-double" />
+
+    <CoinDouble v-if="$vuetify.breakpoint.smAndUp" class="second-coin-double" />
+
+    <Coin v-if="$vuetify.breakpoint.smAndUp" class="first-coin-single" />
   </v-container>
 </template>
 
@@ -36,23 +42,47 @@ export default defineComponent({
   top: -5rem;
   left: -5rem;
 }
+.second-dollar {
+  position: absolute;
+  transform: rotate(30deg);
+  top: -8rem;
+  left: -3rem;
+}
 .first-coin-double {
   position: absolute;
   top: 15%;
   right: 70%;
   transform: translate(-15%, -15%);
 }
+.first-second-coin-double {
+  position: absolute;
+  top: -15%;
+  right: 50%;
+  transform: scale(0.7);
+}
 .second-coin-double {
   position: absolute;
   right: 10%;
   bottom: 10%;
-  transform: translate(-5vw, 10vw) scale(0.5);
+  transform: scale(0.5);
+}
+.third-coin-double {
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  transform: scale(0.45);
 }
 .first-coin-single {
   position: absolute;
   bottom: 0%;
   left: 25%;
   transform: translate(-75%, 0);
+}
+.second-coin-single {
+  position: absolute;
+  top: 0%;
+  left: 25%;
+  transform: scale(0.7);
 }
 .first-graph {
   position: absolute;

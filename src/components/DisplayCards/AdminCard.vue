@@ -118,7 +118,9 @@
             <v-card-title>System Error Watch List</v-card-title>
             <v-card-text>
               Quota Error?:
-              <v-btn :class="{ error: true, accent1: !quotaError }">{{ quotaRemaining }}</v-btn>
+              <v-btn :class="{ error: quotaError, accent1: !quotaError }">{{
+                quotaRemaining
+              }}</v-btn>
             </v-card-text>
           </v-card>
         </v-col>

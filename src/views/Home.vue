@@ -14,8 +14,20 @@
       Finding Dollar
     </v-card-title>
     <v-card-actions class="justify-center">
-      <v-btn class="rounded-lg secondary" elevation="5">14 AUG 2021</v-btn>
-      <v-btn class="rounded-lg secondary" elevation="5">9 AM - 3 PM (SGT)</v-btn>
+      <v-btn
+        class="rounded-lg secondary pa-4 mr-2"
+        :small="$vuetify.breakpoint.smAndDown"
+        :x-large="$vuetify.breakpoint.mdAndUp"
+        elevation="5"
+        >14 AUG 2021</v-btn
+      >
+      <v-btn
+        class="rounded-lg secondary pa-4 ml-2"
+        :small="$vuetify.breakpoint.smAndDown"
+        :x-large="$vuetify.breakpoint.mdAndUp"
+        elevation="5"
+        >9 AM - 3 PM (SGT)</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -52,3 +64,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+h2 {
+  font-size: 1rem !important;
+}
+</style>

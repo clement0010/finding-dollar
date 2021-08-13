@@ -94,7 +94,14 @@ export default defineComponent({
           return;
         }
 
+        if (id === 'admin') {
+          console.log('Id', { id });
+          root.$router.push({ name: 'Admin' });
+          return;
+        }
+
         if (id) {
+          console.log('Id2', { id });
           root.$router.push({ name: 'Profile', params: { id } });
         }
       } catch (err) {

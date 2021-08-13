@@ -16,7 +16,7 @@ import CoinDouble from '@/components/Money/CoinDouble.vue';
 import Graph from '@/components/Money/Graph.vue';
 
 export default defineComponent({
-  name: 'BottomLeft',
+  name: 'Bottom',
   components: {
     DollarFull,
     Coin,
@@ -30,25 +30,25 @@ export default defineComponent({
 .first-dollar {
   position: absolute;
   transform: rotate(210deg);
-  bottom: -10rem;
-  left: -10rem;
-}
-.first-coin-single {
-  position: absolute;
-  bottom: 20%;
-  right: 90%;
-  transform: scale(1.5);
+  bottom: -8rem;
+  left: -3rem;
 }
 .first-graph {
   position: absolute;
-  bottom: -35%;
-  right: -50%;
-  transform: translate(-25%, 10%);
+  bottom: -6rem;
+  left: 3rem;
+  transform: scale(2.5);
+}
+.first-coin-single {
+  position: absolute;
+  bottom: 3rem;
+  left: -2rem;
+  transform: scale(0.8);
 }
 .first-coin-double {
   position: absolute;
-  bottom: -30%;
-  right: -50%;
+  bottom: -7rem;
+  right: -13rem;
   transform: scale(0.5);
 }
 </style>
