@@ -43,7 +43,7 @@ export default defineComponent({
 }
 .first-graph {
   position: absolute;
-  top: 0;
+  bottom: -35%;
   right: -50%;
   transform: translate(-25%, 10%);
 }
